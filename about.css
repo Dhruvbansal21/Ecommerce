@@ -1,0 +1,356 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap");
+
+.back-link {
+      position: fixed;
+      top: 10px;
+      left: 4px;
+      font-size: 2vh;
+      padding: 0px;
+      border-radius: 10%;
+      text-decoration: none;
+      color: white;
+      transition: background-color 0.3s, transform 0.3s;
+      z-index: 3000;
+    }
+
+
+    .back-link:hover {
+      color: orange;
+    }
+
+    .top-bar {
+  position: fixed;   /* stays fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #000;
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 6px 0;
+  user-select: none;
+  height: 5vh;
+  z-index: 2000;     /* above content */
+}
+
+/* Push main content down by the height of the bar */
+.header, main, body {
+  margin-top: 5vh;   /* same as .top-bar height */
+}
+
+
+    .top-bar span:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+/* Global Reset & Variables */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #7f8c8d;
+    --accent-color: #3498db;
+    --light-bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --font-poppins: 'Poppins', sans-serif;
+    --font-playfair: 'Playfair Display', serif;
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+body {
+    font-family: var(--font-poppins);
+    background-color: var(--light-bg);
+    color: var(--primary-color);
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+/* ✅ Header Fixed & Clean */
+
+
+.logo img {
+    height: 60px;   /* instead of margin-top */
+    width: auto;
+    margin: 0;      /* remove extra margin */
+    padding: 0;     /* remove extra padding */
+    display: block; /* removes inline gap */
+}
+
+/* Navigation */
+.navmenu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 25px;
+}
+
+.navmenu a {
+    color: var(--primary-color);
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navmenu a:hover {
+    color: var(--accent-color);
+}
+
+/* Nav Icons */
+.navicons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navicons i {
+    font-size: 22px;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.navicons i:hover {
+    color: var(--accent-color);
+}
+
+/* ✅ About Page Content Wrapper */
+.about-wrapper {
+    padding-top: 0px; /* space for fixed header */
+    padding-bottom: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Hero Section */
+.about-hero {
+    position: relative;
+    text-align: center;
+    padding: 120px 20px;
+    margin-bottom: 50px;
+    background: linear-gradient(135deg, #eaf2f8, #cce6ff);
+    border-radius: 10px;
+    color: var(--primary-color);
+    box-shadow: var(--shadow-light);
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero-title {
+    font-family: var(--font-playfair);
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    animation: slideInUp 1.2s ease-out;
+}
+
+.hero-subtitle {
+    font-family: var(--font-poppins);
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* About Content Section */
+.about-content-section {
+    padding: 0 20px;
+}
+
+.about-container {
+    background-color: var(--card-bg);
+    padding: 50px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-container:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.section-heading {
+    font-family: var(--font-playfair);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+.about-container p {
+    color: var(--secondary-color);
+}
+
+/* Team Section */
+.team-section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.team-heading {
+    font-family: var(--font-playfair);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+}
+
+.team-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.team_member {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    width: 250px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.team_member:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.team_img {
+    margin-bottom: 20px;
+}
+
+.team_img img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--accent-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.team_img img:hover {
+    transform: scale(1.05);
+    border-color: var(--primary-color);
+}
+
+.team_member h3 {
+    font-family: var(--font-playfair);
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.team_member .role {
+    color: var(--accent-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+.team_member p.team-description {
+    font-style: italic;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+
+  /* ================= FOOTER ================= */
+footer { background: white; border-top: 1px solid #eff0f3;
+  padding-top: 20px;
+  padding-left: 30px;
+}
+footer .icon {
+  max-width: 150px;   /* adjust size */
+  height: auto;       /* keeps aspect ratio */
+  display: block;
+  margin: 10px auto 0; /* centers it under text */
+}
+
+
+.footer-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 2fr 1fr 1fr 2fr;
+}
+footer .col h4 { margin: 0 0 12px;
+color: #000;
+font-weight: bold; }
+footer .col p { margin: 8px 0; color: var(--muted); }
+footer .col a { display: block; margin: 6px 0; color: var(--dark); text-decoration: none; }
+footer .col a:hover { color: var(--brand); }
+footer .install .row { display: flex; gap: 10px; margin: 8px 0 12px; }
+footer .copy { text-align: center; color: var(--muted); margin: 28px 0 0; }
+  .row {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.row a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 24px;
+  color: #555;
+  transition: color 0.3s ease;
+}
+
+
+
+footer .col .row {
+  display: flex;
+  justify-content:center;  /* push icons to the right */
+  align-items: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+
+
+    .row a:hover .bxl-youtube { color: #FF0000; }
+    .row a:hover .bxl-twitter { color: #1DA1F2; }
+    .row a:hover .bxl-facebook { color: #1877F2; }
+    .row a:hover .bxl-instagram { color: #E1306C; }
+
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

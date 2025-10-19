@@ -1,0 +1,172 @@
+/* Shared responsive utilities for all pages */
+
+/* Base tweaks that are safe across pages */
+img, video { max-width: 100%; height: auto; }
+.container, .about-wrapper { padding-left: 16px; padding-right: 16px; }
+html, body { width: 100%; }
+body { overflow-x: hidden; }
+
+/* Grid helpers */
+.products { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.card-container { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.brand-container { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+.footer-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+
+/* Header/nav common fallbacks */
+header .navmenu { flex-wrap: wrap; }
+.menu-toggle { display: none; }
+header a.logo img { display: block; height: auto; }
+.topbar { display: flex; flex-wrap: wrap; }
+.categories { -webkit-overflow-scrolling: touch; }
+.scroll-banner img { width: 100%; height: auto; }
+.product-image, .card img { width: 100%; display: block; }
+
+/* Small laptops/tablets (<= 1024px) */
+@media (max-width: 1024px) {
+  header { padding: 0 24px !important; }
+  .categories { gap: 18px; }
+  .scroll-banner img { height: 240px; object-fit: cover; }
+  .products .product-image, .card img { height: 240px; object-fit: contain; }
+}
+
+/* Tablet range: keep nav visible, compress spacing; avoid overlap */
+/* Compact tablet nav with visible titles */
+@media (min-width: 771px) and (max-width: 860px) {
+  .navmenu { display: flex !important; gap: 14px; }
+  .navmenu li a { font-size: 14px !important; }
+  .menu-toggle { display: none !important; }
+  header { height: 60px !important; padding: 8px 16px !important; }
+  .logo img { max-width: 180px !important; height: 56px !important; padding-top: 0 !important; margin-top: 0 !important; }
+  header .navicons { gap: 10px !important; }
+  main { padding-top: 86px !important; }
+  .categories { margin-top: 12px !important; }
+}
+
+/* Slightly larger logo for bigger tablets (logo was too small at ~860px) */
+@media (min-width: 861px) and (max-width: 900px) {
+  .navmenu { display: flex !important; gap: 12px; }
+  .navmenu li a { font-size: 14px !important; }
+  .menu-toggle { display: none !important; }
+  header { height: 60px !important; padding: 8px 16px !important; }
+  .logo img { max-width: 190px !important; height: 58px !important; padding-top: 0 !important; margin-top: 0 !important; }
+  header .navicons { gap: 10px !important; }
+  main { padding-top: 86px !important; }
+  .categories { margin-top: 12px !important; }
+}
+
+/* Phones and small tablets: switch to hamburger, hide full nav */
+@media (max-width: 770px) {
+  /* Compact header */
+  .menu-toggle { display: inline-block !important; }
+  header { height: 58px !important; padding: 8px 12px !important; }
+  .logo img { max-width: 140px !important; height: 44px !important; }
+  header .navicons { gap: 8px !important; }
+  header .navicons i { font-size: 18px !important; }
+
+  /* Always-visible mobile nav as a fixed bar under header */
+  .navmenu {
+    display: flex !important;
+    position: fixed;
+    top: 58px; /* equal to header height */
+    left: 0;
+    right: 0;
+    background: #fff;
+    justify-content: center;
+    gap: 16px;
+    padding: 8px 12px;
+    border-bottom: 1px solid #e5e7eb;
+    z-index: 1500;
+  }
+  .navmenu li a { font-size: 15px !important; }
+
+  /* Push content below header + mobile nav bar (tighter) */
+  main { padding-top: 108px !important; }
+  .categories { margin-top: 72px !important; }
+  header + .categories { margin-top: 96px !important; }
+}
+
+/* Extra guard: after 700px and below, ensure categories clear the fixed header */
+@media (max-width: 700px) {
+  header { height: 54px !important; }
+  .logo img { max-width: 110px !important; height: 36px !important; }
+  header + .categories { margin-top: 60px !important; }
+}
+
+/* Tight small-tablet window: ensure no overlap under fixed nav (700–760px) */
+@media (min-width: 700px) and (max-width: 760px) {
+  /* default within 700-760 */
+  main { padding-top: 108px !important; }
+  .categories { margin-top: 72px !important; }
+  header + .categories { margin-top: 96px !important; }
+}
+
+/* Narrow band 730–750px: further tighten spacing */
+@media (min-width: 730px) and (max-width: 750px) {
+  main { padding-top: 102px !important; }
+  .categories { margin-top: 64px !important; }
+  header + .categories { margin-top: 92px !important; }
+}
+
+/* Tablets (<= 768px) */
+@media (max-width: 768px) {
+  body { padding: 8px !important; }
+  .topbar { padding: 6px 16px !important; }
+  header { height: 56px !important; padding: 8px 12px !important; }
+  header .navicons { gap: 12px !important; }
+  .logo img { max-width: 120px !important; height: 40px !important; padding-top: 0 !important; margin-top: 0 !important; }
+  .navmenu { display: none !important; }
+  .menu-toggle { display: inline-block !important; }
+  main { padding-top: 100px !important; }
+
+  /* Two-column products on tablets */
+  .products { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .card-container { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+  /* Sidebar filters stack above */
+  .container { flex-direction: column !important; gap: 20px !important; }
+  aside.filters { position: static !important; max-height: none !important; width: 100% !important; }
+
+  .scroll-banner img { height: 200px; }
+
+  /* Card/media sizing */
+  .product-image, .card img { height: 220px; }
+
+  /* Modal fit on mobile */
+  .auth-modal { width: 92% !important; max-width: 420px !important; max-height: 90vh !important; overflow-y: auto !important; }
+  .modal-overlay { align-items: flex-start !important; padding-top: 8vh; }
+
+  /* Footer layout for tablets */
+  .footer-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
+  footer .col h4 { font-size: 16px !important; }
+  footer .col a, footer .col p { font-size: 14px !important; }
+}
+
+/* Phones (<= 480px) */
+@media (max-width: 480px) {
+  body { padding: 6px !important; }
+  .categories { gap: 12px; padding: 12px; }
+  .cat img { width: 64px; height: 64px; }
+  .scroll-banner img { height: 160px; }
+  header { height: 52px !important; }
+  .logo img { max-width: 100px !important; height: 36px !important; }
+  .topbar { font-size: 12px; }
+
+  .hero-title { font-size: 2rem !important; }
+  .hero-subtitle { font-size: 0.95rem !important; }
+  .section-heading { font-size: 1.6rem !important; }
+
+  /* Single-column products on phones */
+  .products { grid-template-columns: 1fr; gap: 14px; }
+  .card-container { grid-template-columns: 1fr; gap: 14px; }
+  .brand-container { grid-template-columns: repeat(3, 1fr); }
+  .product-image, .card img { height: 200px; }
+
+  /* Footer compaction */
+  footer { padding: 20px 14px !important; }
+  .footer-grid { grid-template-columns: 1fr !important; }
+  footer .col { text-align: center !important; }
+  footer .col .row { justify-content: center !important; }
+  footer .icon { max-width: 120px !important; }
+}
+
+

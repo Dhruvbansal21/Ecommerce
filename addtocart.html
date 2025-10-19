@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="responsive.css">
+  <style>
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #fff;
+      color: #111;
+      padding: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 26px;
+    }
+
+    .cart-container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: #f8f9fb;
+    }
+
+    thead th {
+      text-align: left;
+      padding: 16px;
+      font-weight: 600;
+      color: #555;
+      font-size: 15px;
+    }
+
+    tbody td {
+      padding: 16px;
+      border-bottom: 1px solid #eee;
+      vertical-align: middle;
+    }
+
+    .product-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .product-info img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .product-details {
+      font-size: 14px;
+      color: #444;
+    }
+
+    .product-details small {
+      display: block;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid #ddd;
+      border-radius: 25px;
+      padding: 4px 12px;
+      width: fit-content;
+    }
+
+    .quantity-control span {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .quantity-control button {
+      border: none;
+      background: none;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 0 6px;
+    }
+
+    .remove-btn {
+      cursor: pointer;
+      font-size: 18px;
+      color: #999;
+    }
+
+    .summary {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      background: #f8f9fb;
+      border-top: 1px solid #eee;
+      font-size: 15px;
+    }
+
+    .summary div {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .summary .left, .summary .right {
+      width: 48%;
+    }
+
+    .promo {
+      display: flex;
+      margin-top: 20px;
+      gap: 10px;
+    }
+
+    .promo input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .promo button {
+      padding: 10px 20px;
+      border: none;
+      background: #4f46e5;
+      color: #fff;
+      font-weight: 500;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .cart-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .cart-actions button {
+      flex: 1;
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      border-radius: 8px;
+    }
+
+    .back-btn {
+      background: #111827;
+      color: #fff;
+      margin-right: 10px;
+    }
+
+    .checkout-btn {
+      background: #4f46e5;
+      color: #fff;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>My Shopping Cart</h2>
+  
+  <div class="cart-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Size</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="product-info">
+              <img src="./images/./t11.jpg" alt="Top for Women">
+              <div class="product-details">
+                Top for Women
+                <small>Product ID: 4553458120</small>
+              </div>
+            </div>
+          </td>
+          <td>L</td>
+          <td>
+            <div class="quantity-control">
+              <button>-</button>
+              <span>02</span>
+              <button>+</button>
+            </div>
+          </td>
+          <td>₹500.00</td>
+          <td class="remove-btn">×</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="product-info">
+              <img src="././images/./tm14.jpg" alt="Blue T-shirt">
+              <div class="product-details">
+                T-shirt for Men
+                <small>Product ID: 8953458747</small>
+              </div>
+            </div>
+          </td>
+          <td>M</td>
+          <td>
+            <div class="quantity-control">
+              <button>-</button>
+              <span>02</span>
+              <button>+</button>
+            </div>
+          </td>
+          <td>₹500.00</td>
+          <td class="remove-btn">×</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="product-info">
+              <img src="./images/./sm12.jpg" alt="Pink Shirt">
+              <div class="product-details">
+                Shirt for Men
+                <small>Product ID: 2011458796</small>
+              </div>
+            </div>
+          </td>
+          <td>XL</td>
+          <td>
+            <div class="quantity-control">
+              <button>-</button>
+              <span>02</span>
+              <button>+</button>
+            </div>
+          </td>
+          <td>₹500.00</td>
+          <td class="remove-btn">×</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="summary">
+      <div class="left">
+        <div><span>Discount </span> <span> = ₹0.00</span></div>
+        <div><span>Delivery </span> <span> = ₹200.00</span></div>
+      </div>
+      <div class="right">
+        <div><span>Subtotal </span> <span> = ₹2600.00</span></div>
+        <div><span>Total </span> <strong> = ₹2800.00</strong></div>
+      </div>
+    </div>
+
+    <div class="promo">
+      <input type="text" placeholder="Please enter promo code">
+      <button>Apply Discount</button>
+    </div>
+
+    <div class="cart-actions">
+      <a href="./home/homepage.html">
+        <button class="back-btn">Back to Shop</button>
+      </a>
+      <button class="checkout-btn">Checkout</button>
+    </div>
+  </div>
+
+</body>
+</html>

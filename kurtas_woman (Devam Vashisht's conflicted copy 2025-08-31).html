@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lifestyle Kurtas - Clean Layout</title>
+<style>
+  .back-link {
+    position: absolute;
+    top: 10px;
+    left: 4px;
+   font-size: 2vh;  
+    padding: 5px;
+    border-radius: 10%;
+    text-decoration: none; 
+    color: white;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+
+.back-link:hover {
+    color: orange; }
+  /* Reset */
+  aside.filters {
+  position: sticky;
+  top: 20px; /* Distance from the viewport top */
+  max-height: calc(100vh - 40px); /* Adjust for top & bottom padding */
+  overflow-y: auto; /* Scroll inside sidebar if content is taller */
+  padding-right: 10px; /* Optional: some space for scrollbar */
+}
+
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: #fff;
+    color: #333;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  button {
+    cursor: pointer;
+  }
+
+  /* Top Black Bar */
+  .top-bar {
+    background: #000;
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 6px 0;
+    user-select: none;
+  }
+  .top-bar span:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  /* Header */
+  header {
+    display: flex;
+    align-items: center;
+    padding: 14px 40px;
+    border-bottom: 1px solid #ddd;
+    gap: 30px;
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 28px;
+    letter-spacing: 2px;
+    user-select: none;
+  }
+
+  /* Search bar */
+  .search-bar {
+    flex-grow: 1;
+    position: relative;
+  }
+  .search-bar input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.8px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  .search-bar input:focus {
+    border-color: #ff7e00;
+    outline: none;
+  }
+
+  /* Header Actions */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  .sign-in-btn {
+    background-color: #ff7e00;
+    color: #fff;
+    border: none;
+    padding: 9px 22px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+  .sign-in-btn:hover {
+    background-color: #cc6600;
+  }
+  .icon {
+    font-size: 22px;
+    cursor: pointer;
+    user-select: none;
+    color: #555;
+    transition: color 0.3s;
+  }
+  .icon:hover {
+    color: #ff7e00;
+  }
+
+  /* Navigation Menu */
+  nav.menu {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    padding: 16px 0;
+    border-bottom: 1.5px solid #eee;
+    font-weight: 600;
+    font-size: 15px;
+    user-select: none;
+  }
+  nav.menu a {
+    color: #333;
+    padding-bottom: 6px;
+    transition: color 0.3s, border-bottom 0.3s;
+  }
+  nav.menu a:hover,
+  nav.menu a.active {
+    color: #ff7e00;
+    border-bottom: 3px solid #ff7e00;
+  }
+
+  /* Container */
+  .container {
+    display: flex;
+    max-width: 1220px;
+    margin: 35px auto 60px;
+    padding: 0 25px;
+    gap: 40px;
+  }
+
+  /* Filters Sidebar */
+  aside.filters {
+    flex-basis: 270px;
+    font-size: 14px;
+    color: #444;
+  }
+  aside.filters h4 {
+    color: #ff7e00;
+    font-weight: 700;
+    margin-bottom: 18px;
+    letter-spacing: 1.2px;
+    user-select: none;
+  }
+  .filter-group {
+    margin-bottom: 28px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+  }
+  .filter-group label.filter-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 12px;
+    display: block;
+    cursor: default;
+  }
+  .filter-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 500;
+    color: #333;
+    transition: color 0.2s;
+  }
+  .filter-option:hover {
+    color: #ff7e00;
+  }
+  .filter-option input[type="checkbox"] {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Price Slider */
+  .price-slider input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 6px;
+    border-radius: 4px;
+    background: #ddd;
+    outline: none;
+    margin-top: 8px;
+    cursor: pointer;
+  }
+  .price-slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #ff7e00;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    margin-top: -6px;
+  }
+  .price-slider input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: #ff7e00;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+  }
+  .price-values {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    margin-top: 6px;
+    user-select: none;
+  }
+
+  /* Products Grid */
+  section.products {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 28px;
+  }
+  .product-card {
+    background: #fff;
+    height:46vh;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-card:hover {
+    box-shadow: 0 0 12px rgba(255, 126, 0, 0.5);
+  }
+  .product-image {
+  width: 100%;
+  height: 280px;
+  object-fit: contain;  /* ensures full image fits inside */
+  background-color: #fff; /* make this same as card background */
+  display: block;
+}
+
+
+  .product-info {
+    padding: 14px 14px 18px;
+    font-size: 14px;
+    color: #222;
+    font-weight: 600;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .price-section {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: #222;
+  }
+  .price-section .old-price {
+    text-decoration: line-through;
+    font-weight: 400;
+    font-size: 13px;
+    color: #999;
+  }
+
+  /* Badges */
+  .badge {
+    position: absolute;
+    background-color: #ff7300;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 7px;
+    border-radius: 3px;
+    top: 12px;
+    left: 12px;
+    user-select: none;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .badge.new {
+    background-color: #555;
+    top: 38px;
+  }
+  .badge.discount {
+    background-color: #999;
+    top: 38px;
+    left: 12px;
+  }
+
+  /* Wishlist icon */
+  .wishlist-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 26px;
+    height: 26px;
+    border: 1.6px solid #999;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .wishlist-icon:hover {
+    border-color: #ff7300;
+    color: #ff7300;
+  }
+  .wishlist-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+
+</style>
+</head>
+<body>
+<div class="back">
+  <div class="back">
+    <a href="wom.html" class="back-link">
+        BACK
+    </a>
+</div>
+  <!-- Top Black Bar -->
+  <div class="top-bar" role="region" aria-label="Top bar information">
+    <span tabindex="0">Free Shipping</span>
+    <span tabindex="0">Click & Collect</span>
+    <span tabindex="0">Return To Store</span>
+  </div>
+
+  <!-- Header -->
+  <header role="banner">
+    <div class="logo" aria-label="Lifestyle Logo">DualStyle</div>
+    <div class="search-bar">
+      <input type="search" placeholder="What are you looking for?" aria-label="Search products" />
+    </div>
+    <div class="header-actions" role="navigation" aria-label="User actions">
+     
+      <div class="icon" title="Favourites" tabindex="0" aria-label="Favourites">♡</div>
+      <div class="icon" title="Basket" tabindex="0" aria-label="Shopping Basket">🛒</div>
+      <div class="icon" title="More options" tabindex="0" aria-label="More options">⋮</div>
+    </div>
+  </header>
+
+ 
+
+  <!-- Main content -->
+  <div class="container">
+
+    <!-- Left Filters -->
+    <aside class="filters" aria-label="Product filters">
+
+      <h4>FILTERS</h4>
+
+      <div class="filter-group">
+        <label class="filter-title" for="price-range">Price</label>
+        <div class="price-slider">
+          <input id="price-range" type="range" min="199" max="6490" value="399" />
+        </div>
+        <div class="price-values" aria-hidden="true">
+          <span>₹199</span>
+          <span>₹6490</span>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Color</label>
+        <label class="filter-option"><input type="checkbox" /> Black</label>
+        <label class="filter-option"><input type="checkbox" /> White</label>
+        <label class="filter-option"><input type="checkbox" /> Blue</label>
+        <label class="filter-option"><input type="checkbox" /> Red</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Size</label>
+        <label class="filter-option"><input type="checkbox" /> XS</label>
+        <label class="filter-option"><input type="checkbox" /> S</label>
+        <label class="filter-option"><input type="checkbox" /> M</label>
+        <label class="filter-option"><input type="checkbox" /> L</label>
+        <label class="filter-option"><input type="checkbox" /> XL</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Fit</label>
+        <label class="filter-option"><input type="checkbox" /> Regular</label>
+        <label class="filter-option"><input type="checkbox" /> Slim</label>
+        <label class="filter-option"><input type="checkbox" /> Loose</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Promotions</label>
+        <label class="filter-option"><input type="checkbox" /> Extra 10%</label>
+        <label class="filter-option"><input type="checkbox" /> Extra 20%</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Discount</label>
+        <label class="filter-option"><input type="checkbox" /> 10% Off</label>
+        <label class="filter-option"><input type="checkbox" /> 20% Off</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Brand</label>
+        <label class="filter-option"><input type="checkbox" /> FAME FOREVER</label>
+        <label class="filter-option"><input type="checkbox" /> CODE</label>
+        <label class="filter-option"><input type="checkbox" /> GINGER</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Design</label>
+        <label class="filter-option"><input type="checkbox" /> Printed</label>
+        <label class="filter-option"><input type="checkbox" /> Striped</label>
+        <label class="filter-option"><input type="checkbox" /> Solid</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Fabric</label>
+        <label class="filter-option"><input type="checkbox" /> Cotton</label>
+        <label class="filter-option"><input type="checkbox" /> Denim</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Browse</label>
+        <label class="filter-option"><input type="checkbox" /> Kurtas</label>
+        <label class="filter-option"><input type="checkbox" /> Shirts</label>
+        <label class="filter-option"><input type="checkbox" /> Tees</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Sleeve Length</label>
+        <label class="filter-option"><input type="checkbox" /> Short</label>
+        <label class="filter-option"><input type="checkbox" /> 3/4 Sleeve</label>
+        <label class="filter-option"><input type="checkbox" /> Full Sleeve</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Wash</label>
+        <label class="filter-option"><input type="checkbox" /> Light Wash</label>
+        <label class="filter-option"><input type="checkbox" /> Dark Wash</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Type</label>
+        <label class="filter-option"><input type="checkbox" /> Casual</label>
+        <label class="filter-option"><input type="checkbox" /> Formal</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Gender</label>
+        <label class="filter-option"><input type="checkbox" /> Women</label>
+        <label class="filter-option"><input type="checkbox" /> Men</label>
+      </div>
+
+    </aside>
+
+    <!-- Products -->
+    <section class="products" aria-label="Product listings">
+
+      <article class="product-card" tabindex="0">
+        <!-- <div class="badge">EXTRA 12%</div> -->
+        <div class="badge new" style="top: 38px;">NEW</div>
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add FAME FOREVER Printed T-shirt to wishlist">
+       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k1.jpg"
+          alt="FAME FOREVER Printed Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>FAME FOREVER Printed Kurta</span>
+          <div class="price-section">
+            ₹399
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" tabindex="0">
+
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Striped Shirt to wishlist">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k2.jpg"
+          alt="CODE Striped Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>CODE Striped Kurta</span>
+          <div class="price-section">
+            ₹799 <span class="old-price">₹1,599</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" tabindex="0">
+        
+        <div class="badge new" style="top: 38px;">NEW</div>
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k3.jpg"
+          alt="HOUSE OF PATAUDI Designer Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>HOUSE OF PATAUDI Designer Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article>
+
+      <article class="product-card" tabindex="0">
+        
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k4.jpg"
+          alt="MELANGE Cotton Straight Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>MELANGE Cotton Straight Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>
+        <article class="product-card" tabindex="0">
+    
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k5.jpg"
+          alt="AURELIA Embroidered Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>AURELIA Embroidered Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+ 
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k6.jpg"
+          alt="BIBA Anarkali Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>BIBA Anarkali Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+     
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k7.jpg"
+          alt="GLOBAL DESI Floral Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>GLOBAL DESI Floral Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+      
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k9.jpg"
+          alt="W Solid Straight Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>W Solid Straight Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+  
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k10.jpg"
+          alt="SOCH Printed A-Line Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>SOCH Printed A-Line Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+       
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k11.jpg"
+          alt="LIBAS Rayon Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>LIBAS Rayon Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k12.jpg"
+          alt="JANASYA Chikankari Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>JANASYA Chikankari Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="badge">EXTRA 12%</div>
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k13.jpg"
+          alt="INDYA Fusion Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>INDYA Fusion Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <!-- <div class="badge">EXTRA 12%</div> -->
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k14.jpg"
+          alt="AKS Casual Printed Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>AKS Casual Printed Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <!-- <div class="badge">EXTRA 12%</div> -->
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k15.jpg"
+          alt="HOUSE OF PATAUDI Designer Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>HOUSE OF PATAUDI Designer Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k16.jpg"
+          alt="NAYOMI Simple Cotton Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>NAYOMI Simple Cotton Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <!-- <div class="badge">EXTRA 12%</div> -->
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k17.jpg"
+          alt="JAIPUR KURTI Bandhani Print"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>JAIPUR KURTI Bandhani Print</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="badge">EXTRA 12%</div>
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k18.jpg"
+          alt="FABINDIA Handloom Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>FABINDIA Handloom Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <!-- <div class="badge">EXTRA 12%</div> -->
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k19.jpg"
+          alt="RANGRITI Festive Wear Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>RANGRITI Festive Wear Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k20.jpg"
+          alt="MAX Casual Solid Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>MAX Casual Solid Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k21.jpg"
+          alt="AND Elegant Kurta Top"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>AND Elegant Kurta Top</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div>/ -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k22.jpg"
+          alt="BIBA Ikat Print Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>BIBA Ikat Print Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k23.jpg"
+          alt="MELANGE Long Straight Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>MELANGE Long Straight Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k24.jpg"
+          alt="W Ethnic Printed Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>W Ethnic Printed Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="badge">EXTRA 12%</div>
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k25.jpg"
+          alt="SOCH Festive Anarkali Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>SOCH Festive Anarkali Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k26.jpg"
+          alt="LIBAS Simple Workwear Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>LIBAS Simple Workwear Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k27.jpg"
+          alt="AURELIA Gold Foil Print Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>AURELIA Gold Foil Print Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k28.jpg"
+          alt="GLOBAL DESI Indigo Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>GLOBAL DESI Indigo Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k29.jpg"
+          alt="FAME FOREVER Stylish Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>FAME FOREVER Stylish Kurta</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span>
+          </div>
+        </div>
+      </article>
+       <article class="product-card" tabindex="0">
+        <div class="badge new" style="top: 38px;">NEW</div>
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k30.jpg"
+          alt="JANASYA Cotton Blend Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>JANASYA Cotton Blend Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <div class="badge new" style="top: 38px;">NEW</div>
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k31.jpg"
+          alt="AKS Everyday Wear Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>AKS Everyday Wear Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <div class="badge new" style="top: 38px;">NEW</div>
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k32.jpg"
+          alt="W Ethnic Printed Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>W Ethnic Printed Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k33.jpg"
+          alt="AND Elegant Kurta Top"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>AND Elegant Kurta Top</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k34.jpg"
+          alt="FABINDIA Handloom Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>FABINDIA Handloom Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <div class="badge">EXTRA 12%</div>
+        <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k35.jpg"
+          alt="SOCH Printed A-Line Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>SOCH Printed A-Line Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k36.jpg"
+          alt="BIBA Anarkali Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>BIBA Anarkali Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k37.jpg"
+          alt="CODE Solid Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>CODE Solid Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <div class="badge new" style="top: 38px;">NEW</div>
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k38.jpg"
+          alt="W Elegant Straight Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span<W Elegant Straight Kurta/span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k39.jpg"
+          alt="RANGRITI Printed A-Line Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>RANGRITI Printed A-Line Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k40.jpg"
+          alt="HOUSE OF PATAUDI Designer Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>HOUSE OF PATAUDI Designer Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k41.jpg"
+          alt="AURELIA Embroidered Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>AURELIA Embroidered Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <div class="badge">EXTRA 12%</div>
+        <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k42.jpg"
+          alt="FABINDIA Handloom Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>FABINDIA Handloom Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k43.jpg"
+          alt="SOCH Festive Anarkali Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>SOCH Festive Anarkali Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k44.jpg"
+          alt="FAME FOREVER Printed Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>FAME FOREVER Printed Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <div class="badge new" style="top: 38px;">NEW</div>
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k45.jpg"
+          alt="BIBA Anarkali Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>BIBA Anarkali Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article>
+       <article class="product-card" tabindex="0">
+        <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k46.jpg"
+          alt="AKS Everyday Wear Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>AKS Everyday Wear Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <div class="badge">EXTRA 12%</div>
+        <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k47.jpg"
+          alt="FAME FOREVER Printed Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>FAME FOREVER Printed Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k48.jpg"
+          alt="BIBA Anarkali Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>BIBA Anarkali Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+      </article> <article class="product-card" tabindex="0">
+        <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/k49.jpg"
+          alt="LIBAS Rayon Kurta"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>LIBAS Rayon Kurta</span>
+          <div class="price-section">₹699</div>
+        </div>
+
+    </section>
+
+  </div>
+
+</body>
+</html>

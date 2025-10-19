@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lifestyle Men's Sportswear - Clean Layout</title>
+<link rel="stylesheet" href="responsive.css">
+<style>.back-link {
+  position: fixed;
+  top: 10px;
+  left: 4px;
+  font-size: 2vh;
+  padding: 0px;
+  border-radius: 10%;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.3s, transform 0.3s;
+  z-index: 3000;
+}
+
+
+.back-link:hover {
+  color: orange;
+}
+
+aside.filters {
+  position: sticky;
+  top: 20px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background: #fff;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* .top-bar {
+  background: #000;
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 6px 0;
+  user-select: none;
+  height: 5vh;
+} */
+ .top-bar {
+position: fixed;   /* stays fixed */
+top: 0;
+left: 0;
+width: 100%;
+background: #000;
+color: #fff;
+font-size: 14px;
+display: flex;
+justify-content: center;
+gap: 30px;
+padding: 6px 0;
+user-select: none;
+height: 5vh;
+z-index: 2000;     /* above content */
+}
+
+/* Push main content down by the height of the bar */
+.header, main, body {
+margin-top: 5vh;   /* same as .top-bar height */
+}
+
+
+.top-bar span:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  padding: 14px 40px;
+  border-bottom: 1px solid #ddd;
+  gap: 30px;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: 2px;
+  user-select: none;
+}
+
+/* Search bar */
+.search-bar {
+  flex-grow: 1;
+  position: relative;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.8px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.search-bar input:focus {
+  border-color: #ff7e00;
+  outline: none;
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.sign-in-btn {
+  background-color: #ff7e00;
+  color: #fff;
+  border: none;
+  padding: 9px 22px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.sign-in-btn:hover {
+  background-color: #cc6600;
+}
+
+.icon {
+  font-size: 22px;
+  cursor: pointer;
+  user-select: none;
+  color: #555;
+  transition: color 0.3s;
+}
+
+.icon:hover {
+  color: #ff7e00;
+}
+
+/* Navigation Menu */
+nav.menu {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  padding: 16px 0;
+  border-bottom: 1.5px solid #eee;
+  font-weight: 600;
+  font-size: 15px;
+  user-select: none;
+}
+
+nav.menu a {
+  color: #333;
+  padding-bottom: 6px;
+  transition: color 0.3s, border-bottom 0.3s;
+}
+
+nav.menu a:hover,
+nav.menu a.active {
+  color: #ff7e00;
+  border-bottom: 3px solid #ff7e00;
+}
+
+/* Container */
+.container {
+  display: flex;
+  max-width: 1220px;
+  margin: 35px auto 60px;
+  padding: 0 25px;
+  gap: 40px;
+}
+
+/* Filters Sidebar */
+aside.filters {
+  flex-basis: 270px;
+  font-size: 14px;
+  color: #444;
+}
+
+aside.filters h4 {
+  color: #ff7e00;
+  font-weight: 700;
+  margin-bottom: 18px;
+  letter-spacing: 1.2px;
+  user-select: none;
+}
+
+.filter-group {
+  margin-bottom: 28px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+
+.filter-group label.filter-title {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 12px;
+  display: block;
+  cursor: default;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.filter-option:hover {
+  color: #ff7e00;
+}
+
+.filter-option input[type="checkbox"] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+/* Price Slider */
+.price-slider input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 6px;
+  border-radius: 4px;
+  background: #ddd;
+  outline: none;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.price-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #ff7e00;
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+  margin-top: -6px;
+}
+
+.price-slider input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #ff7e00;
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+}
+
+.price-values {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-top: 6px;
+  user-select: none;
+}
+
+/* Products Grid */
+section.products {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 28px;
+}
+
+.product-card {
+  background: #fff;
+  height: 46vh;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  box-shadow: 0 0 12px rgba(255, 126, 0, 0.5);
+}
+
+.product-image {
+  width: 100%;
+  height: 280px;
+  object-fit: contain;
+  /* ensures full image fits inside */
+  background-color: #fff;
+  /* make this same as card background */
+  display: block;
+}
+
+.product-info {
+  padding: 14px 14px 18px;
+  font-size: 14px;
+  color: #222;
+  font-weight: 600;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.price-section {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: #222;
+}
+
+.price-section .old-price {
+  text-decoration: line-through;
+  font-weight: 400;
+  font-size: 13px;
+  color: #999;
+}
+
+/* Badges */
+.badge {
+  position: absolute;
+  background-color: #ff7300;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 3px;
+  top: 12px;
+  left: 12px;
+  user-select: none;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.badge.new {
+  background-color: #555;
+  top: 38px;
+}
+
+.badge.discount {
+  background-color: #999;
+  top: 38px;
+  left: 12px;
+}
+
+/* Wishlist icon */
+.wishlist-icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 26px;
+  height: 26px;
+  border: 1.6px solid #999;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.wishlist-icon:hover {
+  border-color: #ff7300;
+  color: #ff7300;
+}
+
+.wishlist-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff;
+  height: 85%;
+  /* ensures button stays inside */
+  position: relative;
+}
+
+.product-card img {
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+.product-card .price {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff;
+  height: 95%;
+  /* ensures button stays inside */
+  position: relative;
+}
+
+.product-card img {
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+.product-card .price {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.add-to-cart {
+  background: #ff0000;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+  margin-top: 8px;
+  margin-left: auto;
+  /* small space below price */
+}
+
+.add-to-cart:hover {
+  background: darkred;
+}
+</style>
+</head>
+<body>
+
+  <div class="back">
+  <div class="back">
+    <a href="Menpage.html" class="back-link">
+        BACK
+    </a>
+</div>
+
+<div class="top-bar" role="region" aria-label="Top bar information"></div>
+  <!-- Header -->
+  <header role="banner">
+    <div class="logo" aria-label="Lifestyle Logo">DualStyle</div>
+    <div class="search-bar">
+      <input type="search" placeholder="What are you looking for?" aria-label="Search products" />
+    </div>
+    <div class="header-actions" role="navigation" aria-label="User actions">
+     
+      <div class="icon" title="Favourites" tabindex="0" aria-label="Favourites">♡</div>
+      <div class="icon" title="Basket" tabindex="0" aria-label="Shopping Basket">🛒</div>
+      <div class="icon" title="More options" tabindex="0" aria-label="More options">⋮</div>
+    </div>
+  </header>
+
+ 
+
+  <!-- Main content -->
+  <div class="container">
+
+    <!-- Left Filters -->
+    <aside class="filters" aria-label="Product filters">
+
+      <h4>FILTERS</h4>
+
+      <div class="filter-group">
+        <label class="filter-title" for="price-range">Price</label>
+        <div class="price-slider">
+          <input id="price-range" type="range" min="199" max="6490" value="399" />
+        </div>
+        <div class="price-values" aria-hidden="true">
+          <span>₹199</span>
+          <span>₹6490</span>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Color</label>
+        <label class="filter-option"><input type="checkbox" /> Black</label>
+        <label class="filter-option"><input type="checkbox" /> White</label>
+        <label class="filter-option"><input type="checkbox" /> Blue</label>
+        <label class="filter-option"><input type="checkbox" /> Red</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Size</label>
+        <label class="filter-option"><input type="checkbox" /> XS</label>
+        <label class="filter-option"><input type="checkbox" /> S</label>
+        <label class="filter-option"><input type="checkbox" /> M</label>
+        <label class="filter-option"><input type="checkbox" /> L</label>
+        <label class="filter-option"><input type="checkbox" /> XL</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Fit</label>
+        <label class="filter-option"><input type="checkbox" /> Regular</label>
+        <label class="filter-option"><input type="checkbox" /> Slim</label>
+        <label class="filter-option"><input type="checkbox" /> Loose</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Promotions</label>
+        <label class="filter-option"><input type="checkbox" /> Extra 10%</label>
+        <label class="filter-option"><input type="checkbox" /> Extra 20%</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Discount</label>
+        <label class="filter-option"><input type="checkbox" /> 10% Off</label>
+        <label class="filter-option"><input type="checkbox" /> 20% Off</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Brand</label>
+        <label class="filter-option"><input type="checkbox" /> FAME FOREVER</label>
+        <label class="filter-option"><input type="checkbox" /> CODE</label>
+        <label class="filter-option"><input type="checkbox" /> GINGER</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Design</label>
+        <label class="filter-option"><input type="checkbox" /> Printed</label>
+        <label class="filter-option"><input type="checkbox" /> Striped</label>
+        <label class="filter-option"><input type="checkbox" /> Solid</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Fabric</label>
+        <label class="filter-option"><input type="checkbox" /> Cotton</label>
+        <label class="filter-option"><input type="checkbox" /> Denim</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Browse</label>
+        <label class="filter-option"><input type="checkbox" /> Kurtas</label>
+        <label class="filter-option"><input type="checkbox" /> Shirts</label>
+        <label class="filter-option"><input type="checkbox" /> Tees</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Sleeve Length</label>
+        <label class="filter-option"><input type="checkbox" /> Short</label>
+        <label class="filter-option"><input type="checkbox" /> 3/4 Sleeve</label>
+        <label class="filter-option"><input type="checkbox" /> Full Sleeve</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Wash</label>
+        <label class="filter-option"><input type="checkbox" /> Light Wash</label>
+        <label class="filter-option"><input type="checkbox" /> Dark Wash</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Type</label>
+        <label class="filter-option"><input type="checkbox" /> Casual</label>
+        <label class="filter-option"><input type="checkbox" /> Formal</label>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-title">Gender</label>
+        <label class="filter-option"><input type="checkbox" /> Women</label>
+        <label class="filter-option"><input type="checkbox" /> Men</label>
+      </div>
+
+    </aside>
+
+    <!-- Products -->
+    <section class="products" aria-label="Product listings">
+
+      <article class="product-card" tabindex="0">
+        <div class="badge">EXTRA 12%</div>
+        <div class="badge new" style="top: 38px;">NEW</div>
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add FAME FOREVER Athletic T-shirt to wishlist">
+       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm1.jpg"
+          alt="FAME FOREVER Athletic T-shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>FAME FOREVER Athletic T-shirt</span>
+          <div class="price-section">
+            ₹399<button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" tabindex="0">
+        <div class="badge">EXTRA 12%</div>
+        <div class="badge discount" style="top: 38px;">50% OFF</div>
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Performance Shirt to wishlist">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm2.jpg"
+          alt="CODE Performance Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>CODE Performance Shirt</span>
+          <div class="price-section">
+            ₹799 <span class="old-price">₹1,599</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" tabindex="0">
+        <div class="badge">EXTRA 12%</div>
+        <div class="badge new" style="top: 38px;">NEW</div>
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Sport T-shirt to wishlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm3.jpg"
+          alt="CODE Sport T-shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>CODE Sport T-shirt</span>
+          <div class="price-section">₹699<button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+      </article>
+
+      <article class="product-card" tabindex="0">
+        <div class="badge">EXTRA 12%</div>
+        <div class="badge discount" style="top: 38px;">10% OFF</div>
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Training Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm4.jpg"
+          alt="GINGER Training Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>GINGER Training Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+        <article class="product-card" tabindex="0">
+        <div class="badge">EXTRA 12%</div>
+        <div class="badge discount" style="top: 38px;">10% OFF</div>
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add FAME FOREVER Gym Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm6.jpg"
+          alt="FAME FOREVER Gym Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>FAME FOREVER Gym Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="badge">EXTRA 12%</div>
+        <div class="badge discount" style="top: 38px;">10% OFF</div>
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Workout Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm8.jpg"
+          alt="CODE Workout Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>CODE Workout Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="badge">EXTRA 12%</div>
+        <div class="badge discount" style="top: 38px;">10% OFF</div>
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Fitness Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm8.jpg"
+          alt="GINGER Fitness Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>GINGER Fitness Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="badge">EXTRA 12%</div>
+        <div class="badge discount" style="top: 38px;">10% OFF</div>
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add FAME FOREVER Running Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm9.jpg"
+          alt="FAME FOREVER Running Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>FAME FOREVER Running Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="badge">EXTRA 12%</div>
+        <div class="badge discount" style="top: 38px;">10% OFF</div>
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Exercise Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm10.jpg"
+          alt="CODE Exercise Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>CODE Exercise Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Active Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm11.jpg"
+          alt="GINGER Active Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>GINGER Active Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add FAME FOREVER Sport Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm12.jpg"
+          alt="FAME FOREVER Sport Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>FAME FOREVER Sport Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Training Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm13.jpg"
+          alt="CODE Training Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>CODE Training Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Workout Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm4.jpg"
+          alt="GINGER Workout Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>GINGER Workout Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add FAME FOREVER Athletic Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm5.jpg"
+          alt="FAME FOREVER Athletic Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>FAME FOREVER Athletic Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Sport Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm14.jpg"
+          alt="CODE Sport Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>CODE Sport Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Training Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm5.jpg"
+          alt="GINGER Training Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>GINGER Training Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add FAME FOREVER Performance Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm1.jpg"
+          alt="FAME FOREVER Performance Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>FAME FOREVER Performance Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Athletic Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm9.jpg"
+          alt="CODE Athletic Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>CODE Athletic Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Sport Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm1.jpg"
+          alt="GINGER Sport Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>GINGER Sport Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add FAME FOREVER Training Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm9.jpg"
+          alt="FAME FOREVER Training Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>FAME FOREVER Training Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Workout Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm10.jpg"
+          alt="CODE Workout Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>CODE Workout Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Athletic Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm11.jpg"
+          alt="GINGER Athletic Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>GINGER Athletic Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add FAME FOREVER Exercise Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm12.jpg"
+          alt="FAME FOREVER Exercise Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>FAME FOREVER Exercise Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  <article class="product-card" tabindex="0">
+        <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Fitness Shirt to wishlist">
+     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
+      4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 
+      14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+      6.86-8.55 11.54L12 21.35z" stroke="currentColor" fill="none" />
+  </svg>
+        </div>
+        <img
+          src="./images/swm9.jpg"
+          alt="CODE Fitness Shirt"
+          class="product-image"
+        />
+        <div class="product-info">
+          <span>CODE Fitness Shirt</span>
+          <div class="price-section">
+            ₹1,169 <span class="old-price">₹1,299</span><button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </article>  
+
+    </section>
+
+  </div>
+<script>
+  document.querySelectorAll('.add-to-cart').forEach(button => {
+button.addEventListener('click', () => {
+  alert('Product added to cart!');
+  // Baad me yahan cart ka logic likh denge
+});
+});
+
+</script>
+</body>
+</html>
