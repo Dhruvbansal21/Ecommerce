@@ -4,44 +4,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fashion Store</title>
+  <title>DualStyle</title>
   <link rel="stylesheet" href="responsive.css">
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <style>
-    html, body {
-  overflow-x: hidden;   /* horizontal scroll disable */
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Jost", sans-serif;
+  list-style: none;
+  text-decoration: none;
 }
 
-    
+:root {
+  --brand: #EE1C47;
+  --brand-2: #FF416C;
+  --muted: #6b7280;
+  --dark: #111;
+}
+
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      scroll-behavior: smooth;
-      font-family: "Jost", sans-serif;
-      list-style: none;
-      text-decoration: none;
-    }
-
-    :root {
-      --brand: #EE1C47;
-      --brand-2: #FF416C;
-      --muted: #6b7280;
-      --dark: #111;
+      font-family: "Poppins", sans-serif;
     }
 
     body {
-      background-color: #F6EBDD;
+      background-color:antiquewhite;
+      color: #333;
       min-height: 100vh;
     }
 
     /* ===== TOP BLACK BAR ===== */
     .topbar {
       background: black;
-      color: antiquewhite;
+      color: #fff;
       font-size: 15px;
       display: flex;
       justify-content: space-between;
@@ -82,17 +85,17 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 10%;
-  background-color:  rgb(232, 218, 201);
+  background-color: lightgray;
 }
 
-  .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: #333;
-            text-decoration: none;
-        }
+.logo img {
+  margin-top: 31px;
+  max-width: 190px;
+  height: auto;
+}
+
+
+
     /* ====== NAV MENU ====== */
     .navmenu {
       display: flex;
@@ -120,22 +123,26 @@
     .navicons {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 0;
     }
-
+    
     .navicons > * {
-      margin-right: 0;
+      margin-right: 20px;
     }
-
+    
     .navicons > *:last-child {
       margin-right: 0;
     }
-
-    .navicons .inline-search,
+    
+    .navicons .inline-search {
+      margin-right: 0;
+    }
+    
+    /* Remove gap between search and user icon */
     .navicons .search-trigger {
       margin-right: 0;
     }
-
+    
     .navicons .search-trigger + .inline-search + a {
       margin-left: 0;
     }
@@ -186,10 +193,9 @@
       padding: 16px 20px;
       background: antiquewhite;
       border-bottom: 1px solid #ddd;
-      gap: 25px;
+      gap: 35px;
       /* thoda zyada gap */
       align-items: center;
-      border-radius: 20px;
     }
 
     .cat {
@@ -225,16 +231,15 @@
       top: 10px;
       height: 25px;
       width: 1px;
-      background: #ccc;
+      background: antiquewhite;
     }
 
     /* ===== AUTO SCROLL BANNER ===== */
     .scroll-banner {
       width: 100%;
       overflow: hidden;
-      background: antiquewhite;
+      background:  antiquewhite;
       border-bottom: 1px solid #ddd;
-      border-radius: 20px;
     }
 
     .scroll-banner .banner-track {
@@ -249,6 +254,7 @@
       height: 300px;
       object-fit: cover;
       flex-shrink: 0;
+      
     }
 
     @keyframes scroll {
@@ -272,7 +278,7 @@
     }
 
     .product-card {
-      background: antiquewhite;
+      background: #fff;
       border-radius: 8px;
       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
       overflow: hidden;
@@ -311,7 +317,7 @@
 
     footer {
       background: #222;
-      color: antiquewhite;
+      color: #fff;
       text-align: center;
       padding: 12px;
       font-size: 13px;
@@ -332,7 +338,6 @@
       gap: 20px;
       margin-top: 20px;
       align-items: start;
-      border-radius: 20px;
     }
 
     /* Card style for recommended products */
@@ -346,7 +351,6 @@
       display: flex;
       flex-direction: column;
       height: 100%;
-      border-radius: 20px;
     }
 
     .card:hover {
@@ -358,7 +362,7 @@
       width: 100%;
       height: 250px;
       object-fit: contain;
-      background-color: antiquewhite;
+      background-color: #f5f5dc;
       display: block;
       flex-shrink: 0;
     }
@@ -381,7 +385,7 @@
 
     .card-price {
       font-size: 14px;
-      color: #e53935;
+      color: #FF416C;;
       margin-bottom: 8px;
     }
 
@@ -399,7 +403,7 @@
     }
 
     .card-btn:hover {
-      background: #e53935;
+      background: #FF416C;;
     }
 
     .card-btn:disabled {
@@ -412,10 +416,11 @@
       grid-template-columns: repeat(5, 1fr);
       gap: 15px;
       margin: 20px;
+      background-color:  #f5f5dc;
     }
 
     .brand-card {
-      background: antiquewhite;
+      background: #f5f5dc;
       border-radius: 8px;
       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
       overflow: hidden;
@@ -478,36 +483,11 @@
       font-size: 20px;
       margin: 8px 0;
     }
-.inline-search {
-  width: 0;
-  opacity: 0;
-  pointer-events: none;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  padding: 6px 10px;
-  transition: width 0.25s, opacity 0.2s;
-  margin-left: 8px;
-}
-.inline-search.active {
-  width: 180px; /* expanded width */
-  opacity: 1;
-  pointer-events: auto;
-}
-.navicons {
-  display: flex;
-  align-items: center;
-  gap: 32px; /* equal spacing between all icons including search bar */
-}
-
-/* remove all old margin overrides */
-.navicons > * {
-  margin: 0 !important;
-}
 
     .brand-btn {
       display: inline-block;
       padding: 8px 16px;
-      background: white;
+      background:  #f5f5dc;
       color: black;
       font-weight: bold;
       border-radius: 4px;
@@ -517,140 +497,84 @@
 
     .brand-btn:hover {
       background: #28a745;
-      color: antiquewhite;
+      color: #fff;
     }
 
     .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(8px);
       display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
       justify-content: center;
       align-items: center;
-      z-index: 10000;
-      animation: fadeIn 0.3s ease;
+      z-index: 2000;
     }
 
     .modal-overlay.active {
       display: flex;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes slideUp {
-      from {
-        transform: translateY(50px);
-        opacity: 0;
-      }
-
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    /* Signup modal: allow scrolling but hide scrollbar only for this modal */
+    /* Modal box */
     .auth-modal {
-      background-color: rgb(247, 243, 243);
-      border-radius: 20px;
-      width: 90%;
-      max-width: 400px;
-      max-height: 90vh;
-      /* fit inside screen */
+      background: #f5f5dc;
+      width: 400px;
+      max-width: 90%;
+      border-radius: 12px;
       padding: 20px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
       position: relative;
-      animation: slideUp 0.4s ease;
-
-      overflow-y: auto;
-      /* allow vertical scroll if needed */
-
-      /* hide scrollbar but keep scrolling (applies only to .auth-modal) */
-      scrollbar-width: none;
-      /* Firefox */
-      -ms-overflow-style: none;
-      /* IE 10+ */
+      animation: fadeIn 0.3s ease-in-out;
     }
 
-    .auth-modal::-webkit-scrollbar {
-      display: none;
-      /* Chrome, Safari, Opera */
-    }
-
-    /* close button */
+    /* Close button */
     .close-btn {
       position: absolute;
-      top: 15px;
-      right: 20px;
+      top: 12px;
+      right: 15px;
       font-size: 24px;
-      cursor: pointer;
-      color: #999;
-      transition: color 0.3s ease;
       text-decoration: none;
+      color: #555;
     }
 
     .close-btn:hover {
-      color: #333;
+      color: #000;
     }
 
-    .auth-header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
+    /* Header */
     .auth-header h2 {
-      font-size: 28px;
+      margin: 0;
+      font-size: 24px;
       color: #333;
-      margin-bottom: 10px;
-      font-weight: 600;
     }
 
     .auth-header p {
-      color: #666;
       font-size: 14px;
+      color: #666;
     }
 
+    /* Tabs */
     .auth-tabs {
       display: flex;
-      margin-bottom: 30px;
-      border-radius: 12px;
-      background: #f8f9fa;
-      padding: 4px;
+      margin: 20px 0;
+      border-bottom: 1px solid #ddd;
     }
 
     .tab-btn {
       flex: 1;
-      padding: 12px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      border-radius: 8px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      color: #666;
-      text-decoration: none;
       text-align: center;
-      display: block;
+      padding: 10px;
+      cursor: pointer;
+      color: #666;
+      border-bottom: 3px solid transparent;
     }
 
     .tab-btn.active {
-      background: white;
-      color: var(--brand);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      color: #000;
+      font-weight: 600;
+      border-color: #FF416C;
     }
 
+    /* Forms */
     .auth-form {
       display: none;
     }
@@ -660,128 +584,112 @@
     }
 
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .form-group label {
       display: block;
-      margin-bottom: 8px;
-      color: #333;
-      font-weight: 500;
+      margin-bottom: 6px;
       font-size: 14px;
-    }
-
-    .icon {
-      width: 200px;
+      color: #333;
     }
 
     .form-group input {
       width: 100%;
-      padding: 15px;
-      border: 2px solid #e1e5e9;
-      border-radius: 12px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
       font-size: 14px;
-      transition: all 0.3s ease;
-      background: #fafafa;
     }
 
-    .form-group input:focus {
-      outline: none;
-      border-color: var(--brand);
-      background: white;
-      box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
-    }
-
+    /* Buttons */
     .auth-btn {
       width: 100%;
-      max-width: 320px;
-      margin: 10px auto 0;
-      display: block;
-      padding: 15px;
-      background: linear-gradient(135deg, var(--brand), var(--brand));
-      color: white;
+      background: #FF416C;;
+      color: #fff;
       border: none;
-      border-radius: 12px;
+      padding: 12px;
       font-size: 16px;
-      font-weight: 600;
+      border-radius: 8px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 10px;
     }
 
     .auth-btn:hover {
-      background: linear-gradient(135deg, var(--brand-2), var(--brand-2));
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      background: #FF416C;;
     }
 
+    /* Forgot password */
     .forgot-password {
-      text-align: center;
-      margin-top: 20px;
+      text-align: right;
+      margin-top: 8px;
     }
 
     .forgot-password a {
-      color: var(--brand-2);
+      font-size: 13px;
+      color: #007bff;
       text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
     }
 
     .forgot-password a:hover {
       text-decoration: underline;
     }
 
+    /* Divider */
     .divider {
+      display: flex;
+      align-items: center;
       text-align: center;
-      margin: 25px 0;
-      position: relative;
-      color: #999;
-      font-size: 14px;
+      color: #888;
+      margin: 20px 0;
     }
 
-    .divider::before {
+    .divider::before,
+    .divider::after {
       content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: #e1e5e9;
-      z-index: 1;
+      flex: 1;
+      border-bottom: 1px solid #ccc;
     }
 
     .divider span {
-      background: white;
-      padding: 0 15px;
-      position: relative;
-      z-index: 2;
+      margin: 0 10px;
+      font-size: 13px;
     }
 
+    /* Social buttons */
     .social-login {
       display: flex;
       gap: 10px;
-      margin-top: 20px;
     }
 
     .social-btn {
       flex: 1;
-      padding: 12px;
-      border: 2px solid #e1e5e9;
-      background: white;
-      border-radius: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      background:  #f5f5dc;
       cursor: pointer;
-      transition: all 0.3s ease;
       font-size: 14px;
-      font-weight: 500;
       display: flex;
-      align-items: center;
       justify-content: center;
-      gap: 8px;
+      align-items: center;
+      gap: 6px;
     }
 
     .social-btn:hover {
-      border-color: var(--brand);
-      background: #f8f9fa;
+      background:  #f5f5dc;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     /* ================= FOOTER ================= */
 footer { background: white; border-top: 1px solid #eff0f3;
@@ -848,10 +756,8 @@ footer .col .row {
 
 <body>
 
-  <!-- HEADER -->
   <header>
-    
-    <a href="#" class="logo">DUALSTYLE</a>
+    <a href="#" class="logo"><img src="./images/logo.png" alt="Logo"></a>
     <nav>
       <ul class="navmenu">
         <li><a href="./dualstyle.html">Home</a></li>
@@ -861,251 +767,293 @@ footer .col .row {
       </ul>
     </nav>
     <div class="navicons">
-       
+         <a href="./wishlist.html" style="font-size: 24px; margin-right: 2px;margin-bottom:5px ; text-decoration: none;">💖</a>
+
       <a href="#" class="search-trigger"><i class='bx bx-search'></i></a>
       <input type="search" class="inline-search" placeholder="Search products..." style="width:0;opacity:0;border:1px solid #ccc;border-radius:20px;padding:6px 10px;transition:width .25s ease,opacity .2s;margin-left:0;margin-right:0;" />
       <a href="#" onclick="openModal()"><i class='bx bx-user'></i></a>
-      <a href="./wishlist.html" style="font-size: 24px; text-decoration: none;">
-    <i class='bx bx-heart'></i>
-  </a>
       <a href="addtocart.html" title="View Cart"><i class='bx bx-cart'></i></a>
       <!-- HAMBURGER ICON -->
       <span class="menu-toggle" onclick="document.body.classList.toggle('menu-open')"><i class='bx bx-menu'></i></span>
     </div>
   </header>
-
   <!-- CATEGORIES -->
   <div class="categories">
     <div class="cat feed">
-      <img src="./images/W.jpg" alt="">
+      <img src="./images/M.jpg" alt="">
       <p>MY FEED</p>
     </div>
 
     <div class="cat">
-      <a href="kurtas_woman.html">
-        <img src="./images/KURTAS.jpg" alt="Kurtas">
+      <a href="t-shirt_men.html">
+        <img src="./images/tshirt.jpg" alt="">
       </a>
-      <p>KURTAS</p>
+      <p>T-SHIRT</p>
     </div>
 
     <div class="cat">
-      <a href="tops_woman.html">
-        <img src="./images/./top.jpg" alt="Tops">
+      <a href="shirt_men.html">
+        <img src="./images/shirt.jpg" alt="">
       </a>
-      <p>TOPS</p>
+      <p>SHIRT</p>
     </div>
 
     <div class="cat">
-      <a href="dress_woman.html">
-        <img src="./images/./DRESS.jpg" alt="Dresses">
-      </a>
-      <p>DRESSES</p>
-    </div>
-
-    <div class="cat">
-      <a href="saree_woman.html">
-        <img src="./images/./sarees.jpg" alt="Sarees">
-      </a>
-      <p>SAREES</p>
-    </div>
-
-    <div class="cat">
-      <a href="suit_woman.html">
-        <img src="./images/./suits.jpg" alt="Suits">
-      </a>
-      <p>SUITS</p>
-    </div>
-
-    <div class="cat">
-      <a href="ethnicset.html">
-        <img src="./images/./ethnicsets.jpg" alt="Ethnic Sets">
-      </a>
-      <p>ETHNIC SETS</p>
-    </div>
-
-    <div class="cat">
-      <a href="bottoms_woman.html">
-        <img src="./images/./bottoms.jpg" alt="Bottoms">
+      <a href="Bottoms_men.html">
+        <img src="./images/jeans.jpg" alt="">
       </a>
       <p>BOTTOMS</p>
     </div>
 
     <div class="cat">
-      <a href="sportswear_woman.html">
-        <img src="./images/./sports.jpg" alt="Sports Wear">
+      <a href="ethnicset_men.html">
+        <img src="./images/ethnic.jpg" alt="">
+      </a>
+      <p>ETHNICS</p>
+    </div>
+
+    <div class="cat">
+      <a href="sportswear_men.html">
+        <img src="./images/sportswear.png" alt="">
       </a>
       <p>SPORTS WEAR</p>
     </div>
 
     <div class="cat">
-      <a href="coordset_women.html">
-        <img src="./images/./coordset.jpg" alt="Co Ord Sets">
+      <a href="hoodies_men.html">
+        <img src="./images/hoodies.jpg" alt="">
+      </a>
+      <p>HOODIES</p>
+    </div>
+
+    <div class="cat">
+      <a href="co_ordset_men.html">
+        <img src="./images/Coordsets.png" alt="">
       </a>
       <p>CO ORD SETS</p>
     </div>
 
     <div class="cat">
-      <a href="shawls_woman.html">
-        <img src="./images/./shawls.jpg" alt="Shawls">
+      <a href="sweater_men.html">
+        <img src="./images/Sweaters.png" alt="">
       </a>
-      <p>SHAWLS</p>
+      <p>SWEATERS</p>
     </div>
 
     <div class="cat">
-      <a href="kaftan_woman.html">
-        <img src="./images/./kaftan.jpg" alt="Kaftans">
+      <a href="blazer_men.html">
+        <img src="./images/blazers.png" alt="">
       </a>
-      <p>KAFTANS</p>
+      <p>BLAZERS</p>
     </div>
-
   </div>
+
+
 
   <!-- AUTO SCROLL BANNER -->
   <div class="scroll-banner">
     <div class="banner-track">
-      <a href="./ethnicset.html"><img src="./images/./b1.jpeg" alt=""></a>
-      <a href="./suit_woman.html"><img src="./images/./b2.jpeg" alt=""></a>
-      <a href="./kurtas_woman.html"><img src="./images/./b3.jpeg" alt=""></a>
-      <a href="./coordset_women.html"><img src="./images/./b4.jpeg" alt=""></a>
-      <a href="./dress_woman.html"><img src="./images/./b5.jpg" alt=""></a>
-      <a href="./saree_woman.html"><img src="./images/./b6.jpg" alt=""></a>
+      <img src="./images/./banner1_men.jpg" alt="">
+      <img src="./images/./banner4_men.webp" alt="">
+      <img src="./images/./banner3_men.jpg" alt="">
+      <img src="./images/./banner6_men.jpeg" alt="">
+      <img src="./images/./banner5_men..jpg" alt="">
+      <img src="./images/./banner3_men.jpg" alt="">
     </div>
   </div>
 
-  <!-- PRODUCT GRID -->
   <br>
-
   <h2>Recommended for You</h2>
 
   <div class="card-container">
     <!-- Card 1 -->
 
+
     <div class="card">
-      <img src="./images/./rec1.jpeg" alt="Product">
+      <img src="./images/tshirt.jpg" alt="Product">
       <div class="card-content">
-        <p class="card-title">Blue Embroidered Kurti</p>
-        <p class="card-price">₹999</p>
-        <button class="card-btn add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="./images/./rec2.jpg" alt="Product">
-      <div class="card-content">
-        <p class="card-title">Green Anarkali Kurti</p>
-        <p class="card-price">₹1299</p>
-        <button class="card-btn add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="./images/./rec3.avif" alt="Product">
-      <div class="card-content">
-        <p class="card-title">Coral Saree with Polka </p>
-        <p class="card-price">₹1999</p>
-        <button class="card-btn add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="./images/./rec5.jpeg" alt="Product">
-      <div class="card-content">
-        <p class="card-title">Light Blue Casual Shirt</p>
-        <p class="card-price">₹999</p>
-        <button class="card-btn add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="./images/./rec6.jpg" alt="Product">
-      <div class="card-content">
-        <p class="card-title">Pink Floral Midi Dress</p>
-        <p class="card-price">₹1599</p>
-        <button class="card-btn add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="./images/./rec7.jpg" alt="Product">
-      <div class="card-content">
-        <p class="card-title">Green Satin Shirt</p>
-        <p class="card-price">₹1999</p>
-        <button class="card-btn add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="./images/./rec8.jpeg" alt="Product">
-      <div class="card-content">
-        <p class="card-title">Red and White Floral Dress</p>
-        <p class="card-price">₹4999</p>
-        <button class="card-btn add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="./images/./rec9.jpg" alt="Product">
-      <div class="card-content">
-        <p class="card-title">Black Wide-leg Jeans</p>
-        <p class="card-price">₹3500</p>
-        <button class="card-btn add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="./images/./rec10.jpeg" alt="Product">
-      <div class="card-content">
-        <p class="card-title">Blue Printed Midi Dress</p>
+        <p class="card-title">T-Shirt</p>
         <p class="card-price">₹1899</p>
         <button class="card-btn add-to-cart">Add to Cart</button>
       </div>
     </div>
     <div class="card">
-      <img src="./images/./rec11.jpg" alt="Product">
+      <img src="./images/tshirts6.jpg" alt="Product">
       <div class="card-content">
-        <p class="card-title">Light Blue Denim Jeans</p>
-        <p class="card-price">₹2000</p>
+        <p class="card-title">Indian Cricket Team Jersey</p>
+        <p class="card-price">₹4999</p>
+
+        <button class="card-btn add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./images/jeans.jpg" alt="Product">
+      <div class="card-content">
+        <p class="card-title">Jeans</p>
+        <p class="card-price">₹3499</p>
+        <button class="card-btn add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./images/shirts1.jpg" alt="Product">
+      <div class="card-content">
+        <p class="card-title">Shirt</p>
+        <p class="card-price">₹2899</p>
+        <button class="card-btn add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./images/ethnic.jpg" alt="Product">
+      <div class="card-content">
+        <p class="card-title">Ethnic Wear </p>
+        <p class="card-price">₹5899</p>
+        <button class="card-btn add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./images/jeans2.jpg" alt="Product">
+      <div class="card-content">
+        <p class="card-title">Jeans</p>
+        <p class="card-price">₹1299</p>
+        <button class="card-btn add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./images/sweaters2.jpg" alt="Product">
+      <div class="card-content">
+        <p class="card-title">Sweaters</p>
+        <p class="card-price">₹1899</p>
+        <button class="card-btn add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./images/tshirts5.jpg" alt="Product">
+      <div class="card-content">
+        <p class="card-title">Indian Army Training Kit</p>
+        <p class="card-price">₹899</p>
+        <button class="card-btn add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./images/hoodies4.jpg" alt="Product">
+      <div class="card-content">
+        <p class="card-title">Hoodies</p>
+        <p class="card-price">₹1549</p>
+        <button class="card-btn add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./images/tshirts4.jpg" alt="Product">
+      <div class="card-content">
+        <p class="card-title">T-Shirt</p>
+        <p class="card-price">₹999</p>
         <button class="card-btn add-to-cart">Add to Cart</button>
       </div>
     </div>
   </div>
   <br>
-
-  <br>
   <h2>Fresh Fashion</h2>
 
-  <div class="brand-banner" onclick="window.open('https://www.zudio.com', '_blank')">
-    <img src="./images/./change.webp" alt="Zudio Brand">
-    <div class="brand-banner-content">
-
-    </div>
+  <div class="brand-banner" onclick="window.open('https://www.levi.in', '_blank')">
+    <img src="./images/levi'sbanner.png" alt="Levi's Men Fashion">
   </div>
 
 
+
+  <br>
+
   <br>
   <h2>Brand Spotlight</h2>
+
   <div class="brand-container">
     <div class="brand-card">
-      <img src="./images/./andj.jpg" alt="Aurela">
+      <a href="https://in.puma.com/in/en" target="_blank">
+        <img src="./images/puma.png" alt="Puma Collection">
+      </a>
+      <div class="brand-content">
+        <h3 class="brand-title">Puma</h3>
+      </div>
     </div>
+
     <div class="brand-card">
-      <img src="./images/./aurelaj.jpg" alt="Global Desi">
+      <a href="https://www.ae.com/intl/en" target="_blank">
+        <img src="./images/americaneagle.png" alt="American Eagle Collection">
+      </a>
+      <div class="brand-content">
+        <h3 class="brand-title">American Eagle</h3>
+      </div>
     </div>
+
     <div class="brand-card">
-      <img src="./images/./bibaj.jpg" alt="Coverstory">
+      <a href="https://vanheusenindia.abfrl.in/" target="_blank">
+        <img src="./images/vanhuesen.png" alt="Van Heusen Collection">
+      </a>
+      <div class="brand-content">
+        <h3 class="brand-title">Van Heusen</h3>
+      </div>
     </div>
+
     <div class="brand-card">
-      <img src="./images/./goj.jpg" alt="Van Heusen">
+      <a href="https://www.jackjones.in" target="_blank">
+        <img src="./images/jack&jones.png" alt="Jack&Jones Collection">
+      </a>
+      <div class="brand-content">
+        <h3 class="brand-title">Jack&Jones</h3>
+      </div>
     </div>
+
     <div class="brand-card">
-      <img src="./images/./krausj.jpg" alt="Madame">
+      <a href="https://www.blackberrys.com" target="_blank">
+        <img src="./images/blackberry.png" alt="Blackberry Collection">
+      </a>
+      <div class="brand-content">
+        <h3 class="brand-title">Blackberry</h3>
+      </div>
     </div>
+
     <div class="brand-card">
-      <img src="./images/./wj.jpg" alt="Nike Collection">
+      <a href="https://www.arvindfashions.com/brand-arrow/" target="_blank">
+        <img src="./images/arrow.png" alt="Arrow Collection">
+      </a>
+      <div class="brand-content">
+        <h3 class="brand-title">Arrow</h3>
+      </div>
     </div>
+
     <div class="brand-card">
-      <img src="./images/./onlyj.jpg" alt="Adidas Collection">
+      <a href="https://www.tbase.in/" target="_blank">
+        <img src="./images/tbase.png" alt="T-Base Collection">
+      </a>
+      <div class="brand-content">
+        <h3 class="brand-title">t-base</h3>
+      </div>
     </div>
+
     <div class="brand-card">
-      <img src="./images/./allensollyj.jpg" alt="Puma Collection">
+      <a href="https://www.louisphilippe.com" target="_blank">
+        <img src="./images/louisphiliphe.png" alt="Louis Philippe Collection">
+      </a>
+      <div class="brand-content">
+        <h3 class="brand-title">Louis Philippe</h3>
+      </div>
     </div>
+
     <div class="brand-card">
-      <img src="./images/./spanj.jpg" alt="Zara Collection">
+      <a href="https://www.allensolly.com" target="_blank">
+        <img src="./images/allensolly.png" alt="Allen Solly Collection">
+      </a>
+      <div class="brand-content">
+        <h3 class="brand-title">Allen Solly</h3>
+      </div>
     </div>
+
     <div class="brand-card">
-      <img src="./images/./rarej.jpg" alt="H&M Collection">
+      <a href="https://www.pepejeans.in" target="_blank">
+        <img src="./images/pepejeans.png" alt="Pepe Jeans Collection">
+      </a>
+      <div class="brand-content">
+        <h3 class="brand-title">Pepe Jeans</h3>
+      </div>
     </div>
   </div>
 
@@ -1159,12 +1107,7 @@ footer .col .row {
     <p class="copy">© 2025 DualStyle — All Rights Reserved.</p>
   </footer>
 
-
-  </section>
-
-
-
-  <!-- LOGIN/SIGNUP MODAL HTML -->
+ 
   <div class="modal-overlay" id="authModal">
     <div class="auth-modal">
       <a href="#" class="close-btn" onclick="closeModal()">&times;</a>
@@ -1367,6 +1310,7 @@ document.addEventListener('DOMContentLoaded', function(){
     // if no catalog match, create a new generated pid and add minimal entry to PRODUCTS
     var generated = 'gen_' + (Date.now().toString(36).slice(-5)) + '_' + (idx+1);
     card.dataset.pid = generated;
+    // avoid overwriting if already present
     if(!window.PRODUCTS[generated]){
       var img = card.querySelector('img');
       var priceText = (card.querySelector('.card-price') && card.querySelector('.card-price').textContent) || '';
@@ -1391,6 +1335,7 @@ document.addEventListener('DOMContentLoaded', function(){
 document.addEventListener('DOMContentLoaded', function(){
   var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
   cards.forEach(function(card, idx){
+    // assign a stable pid if not present
     if(!card.dataset.pid) card.dataset.pid = 'p' + (idx + 1);
     var pid = card.dataset.pid;
 
@@ -1434,34 +1379,33 @@ document.addEventListener('DOMContentLoaded', function(){
 </script>
 <script src="cart.js"></script>
 <script>
-// Inline expanding search (Women)
+// Inline expanding search (Men)
 document.addEventListener('DOMContentLoaded', function(){
   var trigger = document.querySelector('.navicons .search-trigger');
   var input = document.querySelector('.navicons .inline-search');
   if(!trigger || !input) return;
-  function openBar(){ input.style.width = '180px'; input.style.opacity = '1'; input.focus(); }
+  function openBar(){ input.style.width = '220px'; input.style.opacity = '1'; input.focus(); }
   function closeBar(){ if(!input.value){ input.style.width = '0'; input.style.opacity = '0'; } }
   trigger.addEventListener('click', function(e){ e.preventDefault(); if(input.style.width==='0px' || !input.style.width) openBar(); else closeBar(); });
   input.addEventListener('keydown', function(e){
     if(e.key !== 'Enter') return; var q = (input.value||'').toLowerCase();
     function has(){ for(var i=0;i<arguments.length;i++){ if(q.indexOf(arguments[i])!==-1) return true; } return false; }
     var target = '';
-    if(has('kurta','kurti')) target = 'kurtas_woman.html';
-    else if(has('top','shirt','blouse')) target = 'tops_woman.html';
-    else if(has('dress','gown','midi','maxi')) target = 'dress_woman.html';
-    else if(has('saree','sari')) target = 'saree_woman.html';
-    else if(has('suit','salwar','punjabi')) target = 'suit_woman.html';
-    else if(has('ethnic set','ethnicset','co-ord ethnic')) target = 'ethnicset.html';
-    else if(has('bottom','jeans','trouser','pants','leggings')) target = 'bottoms_woman.html';
-    else if(has('sport','gym','training','active')) target = 'sportswear_woman.html';
-    else if(has('coord','co-ord','co ord','set')) target = 'coordset_women.html';
-    else if(has('shawl','stole')) target = 'shawls_woman.html';
-    else if(has('kaftan','kaftans')) target = 'kaftan_woman.html';
+    if(has('t-shirt','t shirt','tee')) target = 't-shirt_men.html';
+    else if(has('shirt')) target = 'shirt_men.html';
+    else if(has('jean','denim','bottom')) target = 'Bottoms_men.html';
+    else if(has('ethnic','kurta','sherwani')) target = 'ethnicset_men.html';
+    else if(has('sport','gym','training')) target = 'sportswear_men.html';
+    else if(has('hoodie','hoodies')) target = 'hoodies_men.html';
+    else if(has('coord','co-ord','co ord','set')) target = 'co_ordset_men.html';
+    else if(has('sweater','sweat')) target = 'sweater_men.html';
+    else if(has('blazer','coat','suit')) target = 'blazer_men.html';
     if(target){ location.href = target; }
   });
   input.addEventListener('blur', function(){ setTimeout(closeBar, 150); });
 });
 </script>
+  
 </body>
 
 </html>

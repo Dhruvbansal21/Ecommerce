@@ -98,12 +98,15 @@
       gap: 30px;
     }
 
-    .logo {
-      font-weight: 800;
-      font-size: 28px;
-      letter-spacing: 2px;
-      user-select: none;
-    }
+ .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #333;
+            text-decoration: none;
+        }
+
 
     /* Search bar */
     .search-bar {
@@ -289,9 +292,14 @@
     section.products {
       flex-grow: 1;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 28px;
+      justify-content: center;   /* ✅ centers the single card */
+      align-content: start;
     }
+
+    /* Constrain card width so single result doesn't look too wide */
+    .products .product-card { max-width: 300px; width: 100%; }
 
     .product-card {
       background: #fff;
@@ -491,14 +499,13 @@
 
   <!-- Header -->
   <header role="banner">
-    <div class="logo" aria-label="Lifestyle Logo">DualStyle</div>
+    <div class="logo" aria-label="Lifestyle Logo">DUALSTYLE</div>
     <div class="search-bar">
       <input type="search" placeholder="What are you looking for?" aria-label="Search products" />
     </div>
     <div class="header-actions" role="navigation" aria-label="User actions">
      
-      <div class="icon" title="Favourites" tabindex="0" aria-label="Favourites">♡</div>
-      <div class="icon" title="Basket" tabindex="0" aria-label="Shopping Basket">🛒</div>
+      <a href="addtocart.html" class="icon" title="Basket" aria-label="Shopping Cart">🛒</a>
       <div class="icon" title="More options" tabindex="0" aria-label="More options">⋮</div>
     </div>
   </header>
@@ -520,6 +527,7 @@
         </div>
         <div class="price-values" aria-hidden="true">
           <span>₹199</span>
+          <span id="current-price">₹399</span>
           <span>₹6490</span>
         </div>
       </div>
@@ -617,7 +625,7 @@
     <!-- Products -->
     <section class="products" aria-label="Product listings">
 
-      <article class="product-card" tabindex="0">
+      <article class="product-card" tabindex="0" data-price="399" data-color="red" data-size="M" data-fit="Regular" data-brand="FAME FOREVER" data-design="Printed" data-fabric="Silk" data-type="Formal" data-gender="Women" data-discount="0" data-sleeve-length="Full Sleeve" data-wash="Light Wash">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add FAME FOREVER Printed T-shirt to wishlist">
@@ -641,7 +649,7 @@
         </div>
       </article>
 
-      <article class="product-card" tabindex="0">
+      <article class="product-card" tabindex="0" data-price="799" data-color="blue" data-size="L" data-fit="Regular" data-brand="CODE" data-design="Striped" data-fabric="Silk" data-type="Formal" data-gender="Women" data-discount="50" data-sleeve-length="3/4 Sleeve" data-wash="Dark Wash">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <div class="badge discount" style="top: 38px;">50% OFF</div>
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Striped Shirt to wishlist">
@@ -665,7 +673,7 @@
         </div>
       </article>
 
-      <article class="product-card" tabindex="0">
+      <article class="product-card" tabindex="0" data-price="699" data-color="white" data-size="S" data-fit="Slim" data-brand="GINGER" data-design="Solid" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="0" data-sleeve-length="Short" data-wash="Light Wash">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <div class="badge new" style="top: 38px;">NEW</div>
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
@@ -687,7 +695,7 @@
         </div>
       </article>
 
-      <article class="product-card" tabindex="0">
+      <article class="product-card" tabindex="0" data-price="1169" data-color="black" data-size="XL" data-fit="Loose" data-brand="FAME FOREVER" data-design="Printed" data-fabric="Silk" data-type="Formal" data-gender="Women" data-discount="10" data-sleeve-length="Full Sleeve" data-wash="Dark Wash">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -710,7 +718,7 @@
           </div>
         </div>
       </article>
-        <article class="product-card" tabindex="0">
+        <article class="product-card" tabindex="0" data-price="1169" data-color="red" data-size="M" data-fit="Regular" data-brand="CODE" data-design="Solid" data-fabric="Silk" data-type="Formal" data-gender="Women" data-discount="12" data-sleeve-length="3/4 Sleeve" data-wash="Light Wash">
         <div class="badge">EXTRA 12%</div>
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -732,7 +740,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="blue" data-size="L" data-fit="Slim" data-brand="GINGER" data-design="Printed" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="12" data-sleeve-length="Short" data-wash="Dark Wash">
         <div class="badge">EXTRA 12%</div>
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -754,7 +762,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="white" data-size="XL" data-fit="Loose" data-brand="FAME FOREVER" data-design="Striped" data-fabric="Silk" data-type="Formal" data-gender="Women" data-discount="22" data-sleeve-length="Full Sleeve" data-wash="Light Wash">
         <div class="badge">EXTRA 12%</div>
         <div class="badge discount" style="top: 38px;">10% OFF</div>
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -776,7 +784,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="black" data-size="S" data-fit="Regular" data-brand="CODE" data-design="Solid" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="0" data-sleeve-length="3/4 Sleeve" data-wash="Dark Wash">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div>/ -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -798,7 +806,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="red" data-size="L" data-fit="Slim" data-brand="GINGER" data-design="Printed" data-fabric="Silk" data-type="Formal" data-gender="Women" data-discount="0" data-sleeve-length="Full Sleeve" data-wash="Light Wash">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -820,7 +828,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="blue" data-size="M" data-fit="Regular" data-brand="FAME FOREVER" data-design="Striped" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="0" data-sleeve-length="Short" data-wash="Light Wash">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -842,7 +850,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="white" data-size="XL" data-fit="Loose" data-brand="CODE" data-design="Solid" data-fabric="Silk" data-type="Formal" data-gender="Women" data-discount="0" data-sleeve-length="3/4 Sleeve" data-wash="Dark Wash">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -864,7 +872,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="black" data-size="S" data-fit="Regular" data-brand="GINGER" data-design="Printed" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="0" data-sleeve-length="Short" data-wash="Light Wash">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -886,7 +894,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="red" data-size="L" data-fit="Slim" data-brand="FAME FOREVER" data-design="Striped" data-fabric="Silk" data-type="Formal" data-gender="Women" data-discount="0" data-sleeve-length="Full Sleeve" data-wash="Dark Wash">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -908,7 +916,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="blue" data-size="M" data-fit="Regular" data-brand="CODE" data-design="Solid" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="0" data-sleeve-length="3/4 Sleeve" data-wash="Light Wash">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -930,7 +938,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="white" data-size="S" data-fit="Slim" data-brand="GINGER" data-design="Printed" data-fabric="Silk" data-type="Formal" data-gender="Women" data-discount="12">
         <div class="badge">EXTRA 12%</div>
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -952,7 +960,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="black" data-size="L" data-fit="Loose" data-brand="FAME FOREVER" data-design="Striped" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="10">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <div class="badge discount" style="top: 38px;">10% OFF</div>
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -974,7 +982,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="red" data-size="M" data-fit="Regular" data-brand="CODE" data-design="Solid" data-fabric="Silk" data-type="Formal" data-gender="Women" data-discount="0">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -996,9 +1004,9 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="red" data-size="M" data-fit="Regular" data-brand="GINGER" data-design="Printed" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="10">
         <!-- <div class="badge">EXTRA 12%</div> -->
-        <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
+        <div class="badge discount" style="top: 38px;">10% OFF</div>
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 
@@ -1018,7 +1026,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="blue" data-size="L" data-fit="Slim" data-brand="GINGER" data-design="Striped" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="0">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -1040,7 +1048,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="white" data-size="XL" data-fit="Loose" data-brand="GINGER" data-design="Solid" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="12">
         <div class="badge">EXTRA 12%</div>
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -1062,7 +1070,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="black" data-size="S" data-fit="Regular" data-brand="GINGER" data-design="Printed" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="0">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -1084,7 +1092,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="red" data-size="M" data-fit="Slim" data-brand="FAME FOREVER" data-design="Striped" data-fabric="Silk" data-type="Formal" data-gender="Women" data-discount="0">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -1106,7 +1114,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="blue" data-size="L" data-fit="Regular" data-brand="CODE" data-design="Solid" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="0">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -1128,7 +1136,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="white" data-size="XL" data-fit="Loose" data-brand="FAME FOREVER" data-design="Printed" data-fabric="Silk" data-type="Formal" data-gender="Women" data-discount="0">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -1150,7 +1158,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="black" data-size="S" data-fit="Regular" data-brand="CODE" data-design="Solid" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="0">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -1172,7 +1180,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="red" data-size="M" data-fit="Slim" data-brand="GINGER" data-design="Striped" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="10">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <div class="badge discount" style="top: 38px;">10% OFF</div>
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -1194,7 +1202,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="blue" data-size="L" data-fit="Regular" data-brand="FAME FOREVER" data-design="Solid" data-fabric="Silk" data-type="Formal" data-gender="Women" data-discount="10">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <div class="badge discount" style="top: 38px;">10% OFF</div>
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -1216,7 +1224,7 @@
             ₹1,169 <span class="old-price">₹1,299</span> <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
-      </article>  <article class="product-card" tabindex="0">
+      </article>        <article class="product-card" tabindex="0" data-price="1169" data-color="white" data-size="XL" data-fit="Loose" data-brand="CODE" data-design="Printed" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="0">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge discount" style="top: 38px;">10% OFF</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add GINGER Washed Denim Shirt to wishlist">
@@ -1239,7 +1247,7 @@
           </div>
         </div>
       </article>
-       <article class="product-card" tabindex="0">
+       <article class="product-card" tabindex="0" data-price="699" data-color="black" data-size="M" data-fit="Regular" data-brand="CODE" data-design="Solid" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="0" data-sleeve-length="Short" data-wash="Light Wash">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
@@ -1259,7 +1267,7 @@
           <span>CODE Solid T-shirt</span>
           <div class="price-section">₹699 <button class="add-to-cart">Add to Cart</button></div>
         </div>
-      </article> <article class="product-card" tabindex="0">
+      </article>       <article class="product-card" tabindex="0" data-price="699" data-color="white" data-size="S" data-fit="Slim" data-brand="CODE" data-design="Solid" data-fabric="Cotton" data-type="Casual" data-gender="Women" data-discount="0">
         <!-- <div class="badge">EXTRA 12%</div> -->
         <!-- <div class="badge new" style="top: 38px;">NEW</div> -->
         <div class="wishlist-icon" title="Add to wishlist" role="button" tabindex="0" aria-label="Add CODE Solid T-shirt to wishlist">
@@ -1707,20 +1715,30 @@
 
   </div>
 
-</body>
-<script>
-  document.querySelectorAll('.add-to-cart').forEach(button => {
-button.addEventListener('click', () => {
-  alert('Product added to cart!');
-  // Baad me yahan cart ka logic likh denge
-});
-});
-</script>
+<script src="cart.js"></script>
+<!-- Filter functionality -->
+<script src="filter.js"></script>
 <!-- Wishlist Integration -->
 <script src="product-wishlist.js"></script>
 
 <!-- Add link to main wishlist page -->
 <script>
+// Update price slider display
+document.addEventListener('DOMContentLoaded', () => {
+    const priceSlider = document.getElementById('price-range');
+    const currentPriceDisplay = document.getElementById('current-price');
+    
+    if (priceSlider && currentPriceDisplay) {
+        // Update display when slider changes
+        priceSlider.addEventListener('input', function() {
+            currentPriceDisplay.textContent = '₹' + this.value;
+        });
+        
+        // Set initial value
+        currentPriceDisplay.textContent = '₹' + priceSlider.value;
+    }
+});
+
 // Add wishlist page link to header actions
 document.addEventListener('DOMContentLoaded', () => {
     const headerActions = document.querySelector('.header-actions');
@@ -1730,7 +1748,7 @@ document.addEventListener('DOMContentLoaded', () => {
         wishlistLink.className = 'icon';
         wishlistLink.title = 'My Wishlist';
         wishlistLink.setAttribute('aria-label', 'My Wishlist');
-        wishlistLink.innerHTML = '💖';
+        wishlistLink.innerHTML = '♡';
         wishlistLink.style.textDecoration = 'none';
         wishlistLink.style.color = 'inherit';
         wishlistLink.style.position = 'relative';
@@ -1796,4 +1814,103 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
+<script>
+// Auto-sync listing `.product-card` with `window.PRODUCTS` catalog by title matching.
+document.addEventListener('DOMContentLoaded', function(){
+  if(!window.PRODUCTS) window.PRODUCTS = {};
+  var cards = document.querySelectorAll('.product-card');
+  var usedIds = new Set(Object.keys(window.PRODUCTS || {}));
+
+  function normalizeTitle(t){ return String(t||'').trim().toLowerCase().replace(/\s+/g,' '); }
+
+  // Build reverse map title->id from PRODUCTS
+  var titleMap = {};
+  Object.keys(window.PRODUCTS).forEach(function(k){ var p = window.PRODUCTS[k]; if(p && p.title) titleMap[normalizeTitle(p.title)] = k; });
+
+  cards.forEach(function(card, idx){
+    var titleEl = card.querySelector('.product-info span');
+    var title = titleEl ? titleEl.textContent.trim() : ('product-' + (idx+1));
+    var norm = normalizeTitle(title);
+
+    var pid = titleMap[norm];
+    if(pid){
+      card.dataset.pid = pid; // existing catalog entry
+      return;
+    }
+
+    // if no catalog match, create a new generated pid and add minimal entry to PRODUCTS
+    var generated = 'gen_' + (Date.now().toString(36).slice(-5)) + '_' + (idx+1);
+    card.dataset.pid = generated;
+    // avoid overwriting if already present
+    if(!window.PRODUCTS[generated]){
+      var img = card.querySelector('.product-image');
+      var priceText = (card.querySelector('.price-section') && card.querySelector('.price-section').textContent) || '';
+      var priceMatch = priceText.match(/(?:₹|Rs\.?\s*)?([0-9,]+(?:\.[0-9]+)?)/);
+      var price = priceMatch ? Number(String(priceMatch[0]).replace(/[^0-9.]/g,'')) : 0;
+      window.PRODUCTS[generated] = {
+        id: generated,
+        title: title,
+        price: price,
+        image: img?img.getAttribute('src'):'',
+        description: 'No extended description available. Click to view details.',
+        rating: 4.0,
+        variants: { colors:['Default'], sizes:['Free Size'], stock: {'Default|Free Size': 10 } },
+        reviews: []
+      };
+    }
+  });
+});
+</script>
+<script>
+// Wire product cards to open product detail page without interfering with existing buttons
+document.addEventListener('DOMContentLoaded', function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.product-card'));
+  cards.forEach(function(card, idx){
+    // assign a stable pid if not present
+    if(!card.dataset.pid) card.dataset.pid = 'p' + (idx + 1);
+    var pid = card.dataset.pid;
+
+    // prepare product snapshot (will be updated on click to capture live values)
+    function buildSnapshot(){
+      var img = card.querySelector('.product-image');
+      var titleEl = card.querySelector('.product-info span');
+      var priceContainer = card.querySelector('.price-section');
+      var oldPriceEl = card.querySelector('.old-price');
+
+      var price = 0;
+      if(priceContainer && priceContainer.textContent){
+        var m = priceContainer.textContent.match(/(?:₹|Rs\.?\s*)?([0-9,]+(?:\.[0-9]+)?)/);
+        if(m) price = Number(String(m[0]).replace(/[^0-9.]/g,'')) || 0;
+      }
+
+      var oldPrice = null;
+      if(oldPriceEl && oldPriceEl.textContent){
+        oldPrice = Number(oldPriceEl.textContent.replace(/[^0-9.]/g,'')) || null;
+      }
+
+      return {
+        id: pid,
+        title: titleEl ? titleEl.textContent.trim() : (img?img.alt:'Product'),
+        price: price,
+        oldPrice: oldPrice,
+        image: img && img.getAttribute('src') ? img.getAttribute('src') : '',
+        description: (card.getAttribute('data-design') || '') + ' ' + (card.getAttribute('data-fabric') || ''),
+        rating: 4.2,
+        reviews: []
+      };
+    }
+
+    card.addEventListener('click', function(e){
+      // ignore clicks on interactive controls inside the card
+      if(e.target.closest('.add-to-cart') || e.target.closest('.wishlist-icon') || e.target.closest('button')) return;
+
+      var snapshot = buildSnapshot();
+      try{ sessionStorage.setItem('lastProduct_' + pid, JSON.stringify(snapshot)); }catch(err){ /* ignore */ }
+      // navigate to product page
+      location.href = 'product.html?id=' + encodeURIComponent(pid);
+    });
+  });
+});
+</script>
+</body>
 </html>

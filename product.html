@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Product Details</title>
+  <style>
+    body{font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif;margin:0;padding:20px;background:#fff}
+    .container{max-width:980px;margin:24px auto}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;min-height:100vh}
+    .media{position:sticky;top:20px;height:fit-content}
+    .media img{width:100%;height:auto;border-radius:8px;max-height:80vh;object-fit:contain}
+    .meta h1{margin:0 0 8px;font-size:22px}
+    .price{font-size:20px;font-weight:800;color:#ff6b00;margin:8px 0}
+    .old{color:#999;text-decoration:line-through;font-weight:600;margin-left:8px;font-size:14px}
+    .actions{display:flex;gap:12px;margin-top:14px}
+    .btn{padding:10px 14px;border-radius:6px;border:none;cursor:pointer;font-weight:700}
+    .btn-cart{background:#ff6f61;color:white}
+    .btn-cart:hover{background:white;color:#ff6f61;border:2px solid #ff6f61}
+    .btn-wish{background:#ff6f61;color:white}
+    .btn-wish:hover{background:white;color:#ff6f61;border:2px solid #ff6f61}
+    .ratings{margin-top:12px;font-size:16px}
+    .star-rating {
+      color: #ffd700;
+      font-size: 20px;
+      letter-spacing: 2px;
+    }
+    .star-rating .empty {
+      color: #ddd;
+    }
+    .rating-number {
+      color: #666;
+      font-size: 14px;
+      margin-left: 8px;
+    }
+    .reviews{margin-top:18px;border-top:1px solid #eee;padding-top:12px}
+    .back-btn{display:inline-block;background:#ff6f61;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:700;margin-bottom:12px}
+    .back-btn:hover, .back-btn:active{background:#fff;color:#ff6f61;border:1.5px solid #ff6f61}
+    /* Size button styles */
+    #size-buttons button {
+      padding: 8px 16px;
+      border: 1.5px solid #ff6f61;
+      background: white;
+      color: #ff6f61;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    #size-buttons button:hover,
+    #size-buttons button:active,
+    #size-buttons button.selected {
+      background: #ff6f61;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+  <a href="saree_woman.html" class="back-btn">← Back to listing</a>
+    <div id="product-root" class="grid" aria-live="polite">
+      <div class="media">
+        <img id="p-image" src="" alt="" />
+      </div>
+      <div class="meta">
+        <h1 id="p-title">Product Title</h1>
+        <div class="price" id="p-price">₹0 <span id="p-old" class="old"></span></div>
+        <div id="p-desc">Short description about the product will show here.</div>
+
+        <div class="ratings" id="p-ratings">
+          <div class="star-rating">★★★★☆</div>
+          <span class="rating-number">(4.2)</span>
+        </div>
+
+        <div class="variant-selectors" style="margin-top:10px">
+          <div style="font-weight:700;margin-bottom:6px">Size:</div>
+          <div id="size-buttons" style="display:flex;gap:8px;flex-wrap:wrap">
+            <!-- size buttons will be injected here: S M L XL XXL -->
+          </div>
+          <div id="stock-info" style="margin-top:8px;font-weight:700;color:#333"></div>
+        </div>
+
+        <div class="actions">
+          <button id="btn-addcart" class="btn btn-cart">Add to cart</button>
+          <button id="btn-wish" class="btn btn-wish">Add to wishlist</button>
+        </div>
+
+        <!-- Key Highlights Section -->
+        <div class="key-highlights" style="margin-top: 24px; padding: 20px; background: transparent; border-radius: 8px;">
+          <h3 style="margin: 0 0 16px; font-size: 18px; font-weight: 700;">Key Highlights</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <span style="color: #888; font-size: 13px; font-weight: 500;">Fit:</span>
+              <span style="font-weight: 700; font-size: 15px; color: #333;">RegularFit</span>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <span style="color: #888; font-size: 13px; font-weight: 500;">Occasion:</span>
+              <span style="font-weight: 700; font-size: 15px; color: #333;">Casual Wear</span>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <span style="color: #888; font-size: 13px; font-weight: 500;">Sleeve Style:</span>
+              <span style="font-weight: 700; font-size: 15px; color: #333;">Half Sleeve</span>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <span style="color: #888; font-size: 13px; font-weight: 500;">Hemline:</span>
+              <span style="font-weight: 700; font-size: 15px; color: #333;">Straight</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Description Section -->
+        <div class="product-description" style="margin-top: 16px;">
+          <div class="accordion-item" style="background: #f5f5f5; border-radius: 8px; margin-bottom: 8px;">
+            <div class="accordion-header" style="padding: 16px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;" onclick="toggleAccordion('description')">
+              <div style="display: flex; align-items: center;">
+                <span style="margin-right: 12px; font-size: 18px;">📋</span>
+                <div>
+                  <div style="font-weight: 700; font-size: 16px;">Product Description</div>
+                  <div style="color: #666; font-size: 14px;">Manufacture, Care and Fit</div>
+                </div>
+              </div>
+              <span id="description-arrow" style="font-size: 18px; transition: transform 0.3s;">▼</span>
+            </div>
+            <div id="description-content" class="accordion-content" style="display: none; padding: 0 16px 16px;">
+              <div style="color: #333; line-height: 1.6;">
+                <p><strong>Material:</strong> 100% Cotton</p>
+                <p><strong>Care Instructions:</strong> Machine wash cold, tumble dry low</p>
+                <p><strong>Fit:</strong> Oversized fit for a relaxed, comfortable feel</p>
+                <p><strong>Manufacturing:</strong> Made with premium quality materials and attention to detail</p>
+                <p><strong>Occasion:</strong> Perfect for casual outings, weekend wear, and everyday comfort</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Returns & Exchange Section -->
+        <div class="returns-exchange" style="margin-top: 8px;">
+          <div class="accordion-item" style="background: #f5f5f5; border-radius: 8px; margin-bottom: 8px;">
+            <div class="accordion-header" style="padding: 16px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;" onclick="toggleAccordion('returns')">
+              <div style="display: flex; align-items: center;">
+                <span style="margin-right: 12px; font-size: 18px;">🔄</span>
+                <div>
+                  <div style="font-weight: 700; font-size: 16px;">15 Days Returns & Exchange</div>
+                  <div style="color: #666; font-size: 14px;">Know about return & exchange policy</div>
+                </div>
+              </div>
+              <span id="returns-arrow" style="font-size: 18px; transition: transform 0.3s;">▼</span>
+            </div>
+            <div id="returns-content" class="accordion-content" style="display: none; padding: 0 16px 16px;">
+              <div style="color: #333; line-height: 1.6;">
+                <p><strong>Return Policy:</strong> 15 days return policy from the date of delivery</p>
+                <p><strong>Exchange Policy:</strong> Size exchange available within 15 days</p>
+                <p><strong>Conditions:</strong> Product must be in original condition with tags attached</p>
+                <p><strong>Refund:</strong> Full refund will be processed within 5-7 business days</p>
+                <p><strong>Free Returns:</strong> We provide free return shipping for all returns</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust Badges Section -->
+        <div class="trust-badges" style="margin-top: 24px; display: flex; justify-content: space-between; gap: 16px;">
+          <div style="text-align: center; flex: 1;">
+            <div style="background: #ff6f61; color: #000; padding: 8px 12px; border-radius: 4px; font-weight: 700; font-size: 12px; margin-bottom: 8px;">ORIGINAL</div>
+            <div style="font-weight: 600; font-size: 14px; line-height: 1.2;">
+              <div>100% GENUINE</div>
+              <div>PRODUCT</div>
+            </div>
+          </div>
+          <div style="text-align: center; flex: 1;">
+            <div style="font-size: 24px; margin-bottom: 8px;">✓</div>
+            <div style="font-weight: 600; font-size: 14px; line-height: 1.2;">
+              <div>100% SECURE</div>
+              <div>PAYMENT</div>
+            </div>
+          </div>
+          <div style="text-align: center; flex: 1;">
+            <div style="font-size: 24px; margin-bottom: 8px;">📦</div>
+            <div style="font-weight: 600; font-size: 14px; line-height: 1.2;">
+              <div>EASY RETURNS &</div>
+              <div>INSTANT REFUNDS</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PIN Code Delivery Availability Section -->
+        <div class="delivery-availability" style="margin-top: 24px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;">
+          <h3 style="margin: 0 0 16px; font-size: 18px; font-weight: 700; color: #333;">Check Delivery Availability</h3>
+          <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;">
+            <input type="text" id="pincode-input" placeholder="Enter 6-digit PIN code" maxlength="6" pattern="[0-9]{6}" style="flex: 1; padding: 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 14px; outline: none; transition: border-color 0.3s;" onkeyup="this.value = this.value.replace(/[^0-9]/g, '')">
+            <button onclick="checkDeliveryAvailability()" style="padding: 12px 20px; background: #ff6f61; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: background 0.3s;">Check</button>
+          </div>
+          <div id="delivery-message" style="font-size: 14px; font-weight: 500; min-height: 20px;"></div>
+          <div style="margin-top: 12px; font-size: 13px; color: #666;">
+            <span style="margin-right: 16px;">🚚 Free delivery on orders above ₹999</span>
+            <span>⏰ Same day delivery in select areas</span>
+          </div>
+        </div>
+
+        <div class="reviews" id="p-reviews" style="margin-top: 24px;">
+          <h3>Reviews</h3>
+          <div id="reviews-list">No reviews yet.</div>
+
+          <div id="review-form-wrapper" style="margin-top:12px;border-top:1px solid #eee;padding-top:12px">
+            <h4>Add a review</h4>
+            <form id="review-form">
+              <div style="margin-bottom:8px">
+                <label for="review-name">Name</label><br />
+                <input id="review-name" type="text" placeholder="Your name" style="width:100%;padding:6px;border:1px solid #ccc;border-radius:4px" />
+              </div>
+              <div style="margin-bottom:8px">
+                <label for="review-rating">Rating</label><br />
+                <select id="review-rating" style="padding:6px;border:1px solid #ccc;border-radius:4px">
+                  <option value="5">5 — Excellent</option>
+                  <option value="4">4 — Very good</option>
+                  <option value="3">3 — Good</option>
+                  <option value="2">2 — Fair</option>
+                  <option value="1">1 — Poor</option>
+                </select>
+              </div>
+              <div style="margin-bottom:8px">
+                <label for="review-text">Your review</label><br />
+                <textarea id="review-text" rows="4" style="width:100%;padding:6px;border:1px solid #ccc;border-radius:4px" placeholder="Write about your experience"></textarea>
+              </div>
+              <div>
+                <button id="review-submit" type="button" class="btn btn-cart">Submit review</button>
+                <span id="review-feedback" style="margin-left:12px;color:green;display:none">Saved!</span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="products.js"></script>
+  <script src="product.js"></script>
+  <script>
+    // Accordion functionality for expandable sections
+    function toggleAccordion(section) {
+      const content = document.getElementById(section + '-content');
+      const arrow = document.getElementById(section + '-arrow');
+      
+      if (content.style.display === 'none' || content.style.display === '') {
+        content.style.display = 'block';
+        arrow.style.transform = 'rotate(180deg)';
+      } else {
+        content.style.display = 'none';
+        arrow.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    // PIN Code Delivery Availability Check
+    function checkDeliveryAvailability() {
+      const pincode = document.getElementById('pincode-input').value;
+      const messageElement = document.getElementById('delivery-message');
+      
+      if (pincode.length !== 6 || !/^\d+$/.test(pincode)) {
+        messageElement.innerHTML = 'Please enter a valid 6-digit PIN code';
+        messageElement.style.color = '#dc3545';
+        return;
+      }
+      
+      // Show loading message
+      messageElement.innerHTML = 'Checking delivery availability...';
+      messageElement.style.color = '#007bff';
+      
+      // Using the India Post API to fetch PIN code information
+      fetch(`https://api.postalpincode.in/pincode/${pincode}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          // API returns an array with one object
+          if (data && data[0] && data[0].Status === "Success") {
+            const postOffice = data[0].PostOffice[0];
+            const city = postOffice.District;
+            const state = postOffice.State;
+            
+            messageElement.innerHTML = `✅ Delivery available in ${city}, ${state}<br><small style="color: #28a745;">Estimated delivery: 2-3 business days</small>`;
+            messageElement.style.color = '#28a745';
+            
+            // Save to localStorage for future reference
+            localStorage.setItem('userPincode', pincode);
+            localStorage.setItem('userCity', city);
+            localStorage.setItem('userState', state);
+          } else {
+            messageElement.innerHTML = '❌ Delivery not available for this PIN code';
+            messageElement.style.color = '#dc3545';
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching PIN code data:', error);
+          messageElement.innerHTML = '❌ Error checking delivery. Please try again.';
+          messageElement.style.color = '#dc3545';
+        });
+    }
+
+    // Load saved PIN code on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedPincode = localStorage.getItem('userPincode');
+      if (savedPincode) {
+        document.getElementById('pincode-input').value = savedPincode;
+        checkDeliveryAvailability();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -14,6 +14,13 @@
   overflow-x: hidden;   /* horizontal scroll disable */
 }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
     
 
     * {
@@ -41,7 +48,7 @@
     /* ===== TOP BLACK BAR ===== */
     .topbar {
       background: black;
-      color: antiquewhite;
+      color: #fff;
       font-size: 15px;
       display: flex;
       justify-content: space-between;
@@ -82,17 +89,15 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 10%;
-  background-color:  rgb(232, 218, 201);
+  background-color:  rgb(232, 218, 201)lightgray;
 }
 
-  .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: #333;
-            text-decoration: none;
-        }
+.logo img {
+  margin-top: 31px;
+  max-width: 190px;
+  height: auto;
+  border-radius: 20px;
+}
     /* ====== NAV MENU ====== */
     .navmenu {
       display: flex;
@@ -120,20 +125,24 @@
     .navicons {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 0;
     }
 
     .navicons > * {
-      margin-right: 0;
+      margin-right: 40px;
     }
 
     .navicons > *:last-child {
       margin-right: 0;
     }
 
-    .navicons .inline-search,
+    .navicons .inline-search {
+      margin-right: 40px;
+    }
+
+    /* Remove gap between search and user icon */
     .navicons .search-trigger {
-      margin-right: 0;
+      margin-right: 0px;
     }
 
     .navicons .search-trigger + .inline-search + a {
@@ -184,7 +193,7 @@
       /* circles ko center align karega */
       overflow-x: auto;
       padding: 16px 20px;
-      background: antiquewhite;
+      background: #fff;
       border-bottom: 1px solid #ddd;
       gap: 25px;
       /* thoda zyada gap */
@@ -232,7 +241,7 @@
     .scroll-banner {
       width: 100%;
       overflow: hidden;
-      background: antiquewhite;
+      background: #fff;
       border-bottom: 1px solid #ddd;
       border-radius: 20px;
     }
@@ -272,7 +281,7 @@
     }
 
     .product-card {
-      background: antiquewhite;
+      background: #fff;
       border-radius: 8px;
       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
       overflow: hidden;
@@ -288,7 +297,7 @@
       height: 280px;
       object-fit: contain;
       /* ensures full image fits inside */
-      background-color: antiquewhite;
+      background-color: #fff;
       /* make this same as card background */
       display: block;
     }
@@ -311,7 +320,7 @@
 
     footer {
       background: #222;
-      color: antiquewhite;
+      color: #fff;
       text-align: center;
       padding: 12px;
       font-size: 13px;
@@ -337,7 +346,7 @@
 
     /* Card style for recommended products */
     .card {
-      background: antiquewhite;
+      background: #fff;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       overflow: hidden;
@@ -358,7 +367,7 @@
       width: 100%;
       height: 250px;
       object-fit: contain;
-      background-color: antiquewhite;
+      background-color: #fff;
       display: block;
       flex-shrink: 0;
     }
@@ -415,7 +424,7 @@
     }
 
     .brand-card {
-      background: antiquewhite;
+      background: #fff;
       border-radius: 8px;
       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
       overflow: hidden;
@@ -493,16 +502,7 @@
   opacity: 1;
   pointer-events: auto;
 }
-.navicons {
-  display: flex;
-  align-items: center;
-  gap: 32px; /* equal spacing between all icons including search bar */
-}
 
-/* remove all old margin overrides */
-.navicons > * {
-  margin: 0 !important;
-}
 
     .brand-btn {
       display: inline-block;
@@ -517,7 +517,7 @@
 
     .brand-btn:hover {
       background: #28a745;
-      color: antiquewhite;
+      color: #fff;
     }
 
     .modal-overlay {
@@ -851,7 +851,7 @@ footer .col .row {
   <!-- HEADER -->
   <header>
     
-    <a href="#" class="logo">DUALSTYLE</a>
+    <a href="#" class="logo"><img src="./images/logo.png" alt="Logo"></a>
     <nav>
       <ul class="navmenu">
         <li><a href="./dualstyle.html">Home</a></li>
@@ -861,13 +861,12 @@ footer .col .row {
       </ul>
     </nav>
     <div class="navicons">
-       
+       <a href="./wishlist.html" style="font-size: 24px; margin-right: 4px; margin-bottom: 5px; text-decoration: none;">
+    <i class='bx bx-heart'></i>
+  </a>
       <a href="#" class="search-trigger"><i class='bx bx-search'></i></a>
       <input type="search" class="inline-search" placeholder="Search products..." style="width:0;opacity:0;border:1px solid #ccc;border-radius:20px;padding:6px 10px;transition:width .25s ease,opacity .2s;margin-left:0;margin-right:0;" />
       <a href="#" onclick="openModal()"><i class='bx bx-user'></i></a>
-      <a href="./wishlist.html" style="font-size: 24px; text-decoration: none;">
-    <i class='bx bx-heart'></i>
-  </a>
       <a href="addtocart.html" title="View Cart"><i class='bx bx-cart'></i></a>
       <!-- HAMBURGER ICON -->
       <span class="menu-toggle" onclick="document.body.classList.toggle('menu-open')"><i class='bx bx-menu'></i></span>
@@ -1439,7 +1438,7 @@ document.addEventListener('DOMContentLoaded', function(){
   var trigger = document.querySelector('.navicons .search-trigger');
   var input = document.querySelector('.navicons .inline-search');
   if(!trigger || !input) return;
-  function openBar(){ input.style.width = '180px'; input.style.opacity = '1'; input.focus(); }
+  function openBar(){ input.style.width = '220px'; input.style.opacity = '1'; input.focus(); }
   function closeBar(){ if(!input.value){ input.style.width = '0'; input.style.opacity = '0'; } }
   trigger.addEventListener('click', function(e){ e.preventDefault(); if(input.style.width==='0px' || !input.style.width) openBar(); else closeBar(); });
   input.addEventListener('keydown', function(e){

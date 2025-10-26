@@ -100,12 +100,14 @@
       gap: 30px;
     }
 
-    .logo {
-      font-weight: 800;
-      font-size: 28px;
-      letter-spacing: 2px;
-      user-select: none;
-    }
+      .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #333;
+            text-decoration: none;
+        }
 
     /* Search bar */
     .search-bar {
@@ -291,8 +293,10 @@
     section.products {
       flex-grow: 1;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 28px;
+      justify-content: center;   /* ✅ centers the single card */
+      align-content: start;
     }
 
     .product-card {
@@ -487,14 +491,13 @@
   <div class="top-bar" role="region" aria-label="Top bar information"></div>
   <!-- Header -->
   <header role="banner">
-    <div class="logo" aria-label="Lifestyle Logo">DualStyle</div>
+    <div class="logo" aria-label="Lifestyle Logo">DUALSTYLE</div>
     <div class="search-bar">
       <input type="search" placeholder="What are you looking for?" aria-label="Search products" />
     </div>
     <div class="header-actions" role="navigation" aria-label="User actions">
 
-      <div class="icon" title="Favourites" tabindex="0" aria-label="Favourites">♡</div>
-      <div class="icon" title="Basket" tabindex="0" aria-label="Shopping Basket">🛒</div>
+      <a href="addtocart.html" class="icon" title="Basket" aria-label="Shopping Basket">🛒</a>
       <div class="icon" title="More options" tabindex="0" aria-label="More options">⋮</div>
     </div>
   </header>
@@ -2188,6 +2191,8 @@
 
   </div>
   <!-- Wishlist Integration -->
+  <script src="cart.js"></script>
+  <script src="filter.js"></script>
   <script src="product-wishlist.js"></script>
 
   <!-- Add link to main wishlist page -->
@@ -2201,7 +2206,7 @@
           wishlistLink.className = 'icon';
           wishlistLink.title = 'My Wishlist';
           wishlistLink.setAttribute('aria-label', 'My Wishlist');
-          wishlistLink.innerHTML = '💖';
+          wishlistLink.innerHTML = '♡';
           wishlistLink.style.textDecoration = 'none';
           wishlistLink.style.color = 'inherit';
           wishlistLink.style.position = 'relative';
@@ -2271,12 +2276,45 @@
   <script>
     document.querySelectorAll('.add-to-cart').forEach(button => {
       button.addEventListener('click', () => {
-        alert('Product added to cart!');
+        // alert('Product added to cart!');
         // Baad me yahan cart ka logic likh denge
       });
     });
 
   </script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        // Prevent if clicking on add-to-cart or wishlist
+        if (e.target.closest('.add-to-cart') || e.target.closest('.wishlist-icon')) return;
+        const img = card.querySelector('.product-image');
+        const titleEl = card.querySelector('.product-info span');
+        const priceEl = card.querySelector('.price-section');
+        if (!img || !titleEl || !priceEl) return;
+        const title = titleEl.textContent.trim();
+        const imgSrc = img.src;
+        const priceText = priceEl.textContent.trim();
+        // Parse price, assume ₹price
+        const priceMatch = priceText.match(/₹([\d,]+)/);
+        const price = priceMatch ? parseFloat(priceMatch[1].replace(/,/g, '')) : 0;
+        const id = title.replace(/\s+/g, '_').toLowerCase();
+        const product = {
+          id,
+          title,
+          price,
+          image: imgSrc,
+          description: 'Product description not available.', // can add more if needed
+        };
+        sessionStorage.setItem('lastProduct_' + id, JSON.stringify(product));
+        window.location.href = 'product.html?id=' + id;
+      });
+    });
+  });
+  </script>
+<script src="cart.js"></script>
+<script src="filter.js"></script>
 
 </body>
 

@@ -98,13 +98,14 @@ header {
   border-bottom: 1px solid #ddd;
   gap: 30px;
 }
-
-.logo {
-  font-weight: 800;
-  font-size: 28px;
-  letter-spacing: 2px;
-  user-select: none;
-}
+  .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #333;
+            text-decoration: none;
+        }
 
 /* Search bar */
 .search-bar {
@@ -290,8 +291,10 @@ aside.filters h4 {
 section.products {
   flex-grow: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 28px;
+  justify-content: center;   /* ✅ centers the single card */
+  align-content: start;
 }
 
 .product-card {
@@ -488,14 +491,13 @@ section.products {
 
   <!-- Header -->
   <header role="banner">
-    <div class="logo" aria-label="Lifestyle Logo">DualStyle</div>
+    <div class="logo" aria-label="Lifestyle Logo">DUALSTYLE</div>
     <div class="search-bar">
       <input type="search" placeholder="What are you looking for?" aria-label="Search products" />
     </div>
     <div class="header-actions" role="navigation" aria-label="User actions">
      
-      <div class="icon" title="Favourites" tabindex="0" aria-label="Favourites">♡</div>
-      <div class="icon" title="Basket" tabindex="0" aria-label="Shopping Basket">🛒</div>
+      <a href="addtocart.html" class="icon" title="Basket" aria-label="Shopping Basket">🛒</a>
       <div class="icon" title="More options" tabindex="0" aria-label="More options">⋮</div>
     </div>
   </header>
@@ -1055,7 +1057,7 @@ section.products {
           wishlistLink.className = 'icon';
           wishlistLink.title = 'My Wishlist';
           wishlistLink.setAttribute('aria-label', 'My Wishlist');
-          wishlistLink.innerHTML = '💖';
+          wishlistLink.innerHTML = '♡';
           wishlistLink.style.textDecoration = 'none';
           wishlistLink.style.color = 'inherit';
           wishlistLink.style.position = 'relative';
@@ -1122,14 +1124,105 @@ section.products {
   });
   </script>
 
-  <script>
-  document.querySelectorAll('.add-to-cart').forEach(button => {
-button.addEventListener('click', () => {
-  alert('Product added to cart!');
-  // Baad me yahan cart ka logic likh denge
-});
-});
+<script>
+// Auto-sync listing `.product-card` with `window.PRODUCTS` catalog by title matching.
+document.addEventListener('DOMContentLoaded', function(){
+  if(!window.PRODUCTS) window.PRODUCTS = {};
+  var cards = document.querySelectorAll('.product-card');
+  var usedIds = new Set(Object.keys(window.PRODUCTS || {}));
 
+  function normalizeTitle(t){ return String(t||'').trim().toLowerCase().replace(/\s+/g,' '); }
+
+  // Build reverse map title->id from PRODUCTS
+  var titleMap = {};
+  Object.keys(window.PRODUCTS).forEach(function(k){ var p = window.PRODUCTS[k]; if(p && p.title) titleMap[normalizeTitle(p.title)] = k; });
+
+  cards.forEach(function(card, idx){
+    var titleEl = card.querySelector('.product-info span');
+    var title = titleEl ? titleEl.textContent.trim() : ('product-' + (idx+1));
+    var norm = normalizeTitle(title);
+
+    var pid = titleMap[norm];
+    if(pid){
+      card.dataset.pid = pid; // existing catalog entry
+      return;
+    }
+
+    // if no catalog match, create a new generated pid and add minimal entry to PRODUCTS
+    var generated = 'gen_' + (Date.now().toString(36).slice(-5)) + '_' + (idx+1);
+    card.dataset.pid = generated;
+    // avoid overwriting if already present
+    if(!window.PRODUCTS[generated]){
+      var img = card.querySelector('.product-image');
+      var priceText = (card.querySelector('.price-section') && card.querySelector('.price-section').textContent) || '';
+      var priceMatch = priceText.match(/(?:₹|Rs\.?\s*)?([0-9,]+(?:\.[0-9]+)?)/);
+      var price = priceMatch ? Number(String(priceMatch[0]).replace(/[^0-9.]/g,'')) : 0;
+      window.PRODUCTS[generated] = {
+        id: generated,
+        title: title,
+        price: price,
+        image: img?img.getAttribute('src'):'',
+        description: 'No extended description available. Click to view details.',
+        rating: 4.0,
+        variants: { colors:['Default'], sizes:['Free Size'], stock: {'Default|Free Size': 10 } },
+        reviews: []
+      };
+    }
+  });
+});
 </script>
+<script>
+// Wire product cards to open product detail page without interfering with existing buttons
+document.addEventListener('DOMContentLoaded', function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.product-card'));
+  cards.forEach(function(card, idx){
+    // assign a stable pid if not present
+    if(!card.dataset.pid) card.dataset.pid = 'p' + (idx + 1);
+    var pid = card.dataset.pid;
+
+    // prepare product snapshot (will be updated on click to capture live values)
+    function buildSnapshot(){
+      var img = card.querySelector('.product-image');
+      var titleEl = card.querySelector('.product-info span');
+      var priceContainer = card.querySelector('.price-section');
+      var oldPriceEl = card.querySelector('.old-price');
+
+      var price = 0;
+      if(priceContainer && priceContainer.textContent){
+        var m = priceContainer.textContent.match(/(?:₹|Rs\.?\s*)?([0-9,]+(?:\.[0-9]+)?)/);
+        if(m) price = Number(String(m[0]).replace(/[^0-9.]/g,'')) || 0;
+      }
+
+      var oldPrice = null;
+      if(oldPriceEl && oldPriceEl.textContent){
+        oldPrice = Number(oldPriceEl.textContent.replace(/[^0-9.]/g,'')) || null;
+      }
+
+      return {
+        id: pid,
+        title: titleEl ? titleEl.textContent.trim() : (img?img.alt:'Product'),
+        price: price,
+        oldPrice: oldPrice,
+        image: img && img.getAttribute('src') ? img.getAttribute('src') : '',
+        description: (card.getAttribute('data-design') || '') + ' ' + (card.getAttribute('data-fabric') || ''),
+        rating: 4.2,
+        reviews: []
+      };
+    }
+
+    card.addEventListener('click', function(e){
+      // ignore clicks on interactive controls inside the card
+      if(e.target.closest('.add-to-cart') || e.target.closest('.wishlist-icon') || e.target.closest('button')) return;
+
+      var snapshot = buildSnapshot();
+      try{ sessionStorage.setItem('lastProduct_' + pid, JSON.stringify(snapshot)); }catch(err){ /* ignore */ }
+      // navigate to product page
+      location.href = 'product.html?id=' + encodeURIComponent(pid);
+    });
+  });
+});
+</script>
+<script src="cart.js"></script>
+<script src="filter.js"></script>
 </body>
 </html>

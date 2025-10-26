@@ -1,196 +1,1086 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUALSTYLE - Premium Fashion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
-  <!-- Styles -->
+  <!-- EmailJS CDN -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="../responsive.css">
 
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F8F3EC;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: #F8F3EC;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-left: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #C5A057;
+        }
+
+        .cart-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            height: 70vh;
+            background-color: rgb(241, 227, 211);
+        }
+
+        .hero-image {
+            flex: 1;
+            background-color: rgb(231, 217, 200); /* Placeholder for image */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            margin-left: 0px;
+            margin-right: 75px;
+            margin-bottom: 0px;
+            margin-top: 50px;
+        }
+
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 5%;
+            background-color: antiquewhite;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .btn {
+            width: 30%;
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: rgb(196, 155, 88); 
+            color: rgb(15, 14, 14);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 0px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            /* margin-top: 1rem; */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: #b08d4a;
+            transform: translateY(-2px);
+        }
+
+        /* Featured Products */
+        .featured {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #C5A057;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .product {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 300px;
+            background-color: #e5e5e5; /* Placeholder */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            color: #C5A057;
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .hero-image, .hero-content {
+                width: 100%;
+                padding: 3rem 5%;
+            }
+            
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+        }
+        #newsletter {
+  background: rgb(196, 155, 88);
+  color: #f6efef;
+  padding-left: 20px;
+  padding-right: 30px;
+}
+#newsletter .newsletter-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 30px 0;
+}
+#newsletter .text h4 { margin: 0 0 6px; }
+#newsletter .text p { margin: 0; }
+#newsletter .text span { color: #1a1a1a; }
+#newsletter .form {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  height: 50px;
+  max-width: 520px;
+}
+#newsletter input {
+  flex: 1;
+  border-radius: 999px;
+  border: 1px solid  rgb(196, 155, 88);
+  padding: 12px 16px;
+  outline: none;
+}
+#newsletter .btn {
+    display: inline-flex;
+    height: 45px;
+    width: 120px;
+  align-items: center;
+  gap: 0.5rem;
+  /* margin-top: 1rem; */
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  color: #111111;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgb(196, 155, 88);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  animation-delay: 1.5s;
+  /* margin-bottom: 800px; */
+}
+#newsletter .btn:hover {
+ transform: translateY(-2px);
+  box-shadow: 0 6px 16px  rgb(196, 155, 88);
+  background: linear-gradient(135deg, var(--brand-2), var(--brand));
+}
+
+/* ================= FOOTER ================= */
+footer { background: #efeeee; border-top: 1px solid #eef2f7;
+  padding-top: 20px;
+  padding-left: 30px;
+}
+.footer-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 2fr 1fr 1fr 2fr;
+}
+footer .col h4 { margin: 0 0 12px; }
+footer .col p { margin: 8px 0; color: var(--muted); }
+footer .col a { display: block; margin: 6px 0; color: var(--dark); text-decoration: none; }
+footer .col a:hover { color: var(--brand); }
+footer .install .row { display: flex; gap: 10px; margin: 8px 0 12px; }
+footer .copy { text-align: center; color: var(--muted); margin: 28px 0 0; }
+  .row {
+      display: flex;
+      gap: 20px;
+    }
+
+    .row a {
+      text-decoration: none;
+      font-size: 22px;
+      color: #555;
+      transition: color 0.3s ease;
+    }
+
+    .row a:hover .bxl-youtube { color: #FF0000; }
+    .row a:hover .bxl-twitter { color: #1DA1F2; }
+    .row a:hover .bxl-facebook { color: #1877F2; }
+    .row a:hover .bxl-instagram { color: #E1306C; }
+    .icon{
+  width: 200px;
+}
+
+
+
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 992px) {
+  header { padding: 10px 5%; }
+  .logo img { max-width: 150px; }
+  .navmenu a { padding: 8px 15px; font-size: 15px; }
+  .feature-img { width: 400px; right: 5%; }
+  .main-home h1 { font-size: 40px; }
+  .main-home p { font-size: 18px; }
+}
+
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }
+  .navmenu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 100%;
+    background: lightgray;
+    text-align: center;
+    padding: 15px 0;
+  }
+  .navmenu li { margin: 10px 0; }
+  .navmenu.active { display: flex; }
+
+  .feature-img {
+    width: 300px;
+    position: static;
+    margin: 20px auto 0;
+    display: block;
+  }
+  .main-home { text-align: center; padding: 100px 5% 5%; }
+  .main-home h1 { font-size: 32px; }
+  .main-home p { font-size: 16px; }
+  .main-btn { padding: 0.6rem 1.2rem; font-size: 0.9rem; }
+
+  #sm-banner { grid-template-columns: 1fr; }
+  #newsletter .newsletter-inner { flex-direction: column; align-items: stretch; }
+}
+
+@media (max-width: 480px) {
+  .logo img { max-width: 120px; }
+  .navicons i { font-size: 22px; margin-right: 12px; }
+  .main-home h1 { font-size: 26px; }
+  .main-home p { font-size: 14px; }
+  .feature-img { width: 250px; }
+}
+
+/* login sign up */
+        body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+    nav {
+    
+      padding: 10px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    nav a {
+      color: #141414;
+      margin-left: 20px;
+      font-size: 18px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .auth-modal {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 100%;
+      position: relative;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      text-decoration: none;
+      color: #333;
+      cursor: pointer;
+    }
+    .auth-form {
+      display: none;
+    }
+    .auth-form.active {
+      display: block;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .auth-btn {
+      width: 100%;
+      padding: 10px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .auth-btn:hover {
+      background: #555;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+    .toggle-link {
+      display: block;
+      margin-top: 10px;
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+      cursor: pointer;
+    }
+    /* Overlay */
+    #cookie-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+        display: none; /* Hidden initially */
+    }
+
+    /* Modal */
+    #cookie-modal {
+        position: fixed;
+        top: 68%;
+        left: 16%;
+        transform: translate(-50%, -50%);
+        background: white;
+        max-width: 500px;
+        width: 90%;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        font-family: Arial, sans-serif;
+    }
+
+
+
+    #cookie-modal h2 {
+        text-align: center;
+        margin: 0;
+        font-size: 18px;
+    }
+
+    #cookie-modal p {
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    #cookie-modal a {
+        text-decoration: underline;
+        color: #000;
+        cursor: pointer;
+    }
+
+    /* Buttons */
+    .cookie-btn {
+        padding: 12px;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        border: none;
+        font-size: 14px;
+    }
+
+    #accept-btn {
+        background-color: black;
+        color: white;
+    }
+
+    #settings-btn {
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+    }
+
+    @media(max-width: 600px) {
+        #cookie-modal {
+            padding: 20px;
+        }
+    }
+      body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+  }
+
+  /* Container for cookie panel */
+  .cookie-settings {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 360px;
+    height: 100%;
+    background: #fff;
+    border-left: 1px solid #ccc;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    z-index: 9999;
+    padding: 20px;
+  }
+
+  .cookie-settings h2 {
+    margin-top: 0;
+  }
+
+  .cookie-settings p {
+    font-size: 14px;
+    color: #333;
+  }
+
+  .cookie-settings .cookie-link {
+    color: #0078d7;
+    text-decoration: underline;
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  .cookie-settings button {
+    width: 100%;
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 0px 0;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .cookie-settings .cookie-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: black;
+    color: white;
+    padding: 10px;
+    margin: 5px 0;
+  }
+
+  .cookie-settings .toggle-switch {
+    width: 40px;
+    height: 20px;
+    background: #888;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .cookie-settings .toggle-switch::after {
+    content: "";
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    transition: all 0.3s ease;
+  }
+
+  .cookie-settings .toggle-switch.active {
+    background: #00cc66;
+  }
+
+  .cookie-settings .toggle-switch.active::after {
+    left: 21px;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Poppins", sans-serif;
+  list-style: none;
+  text-decoration: none;
+}
+
+:root {
+  --brand: #ff6f61;
+  --brand-2: #ff6f61;
+  --muted: #6b7280;
+  --dark: #111;
+  --amazon-dark: #131921;
+}
+
+#location-btn {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  cursor: pointer;
+  color: rgb(16, 16, 16);
+}
+
+#location-btn i {
+  font-size: 22px;
+  margin-right: 5px;
+}
+
+.location-text {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* Location Modal Styles */
+#location-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  background-color: white;
+  margin: 10% auto;
+  padding: 25px;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.location-options {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.option-card {
+  flex: 1;
+  padding: 20px;
+  margin: 0 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.option-card:hover {
+  border-color: var(--brand);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.option-card i {
+  font-size: 36px;
+  color: var(--brand);
+  margin-bottom: 10px;
+}
+
+.option-card h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.option-card p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+#pincode-form, #city-form {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.input-group {
+  display: flex;
+  margin: 15px 0;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
+}
+
+.input-group button {
+  padding: 10px 20px;
+  background-color: var(--brand);
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+#pincode-message {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.pincode-results {
+  margin-top: 15px;
+}
+
+.district-result {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.district-result h4 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: var(--brand);
+}
+
+.district-result p {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.district-result button {
+  padding: 8px 12px;
+  background-color: var(--brand);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.location-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  line-height: 1.2;
+}
+
+/* Location Modal */
+.location-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 25px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: var(--dark);
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.location-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.location-form input {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.location-form button {
+  padding: 12px;
+  background-color: var(--brand);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.location-form button:hover {
+  background-color: var(--brand-2);
+}
+
+.address-type {
+  margin: 10px 0;
+}
+
+.address-type p {
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--dark);
+}
+
+.address-type-options {
+  display: flex;
+  gap: 20px;
+}
+
+.address-type-options label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.address-type-options input {
+  margin-right: 5px;
+  margin-bottom: 0;
+}
+
+body{
+  background-color: rgb(250, 250, 250);
+  scroll-behavior: smooth;
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="logo">DUALSTYLE</a>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
+            <li class="nav-item"><a href="./Menpage.html" class="nav-link">MEN</a></li>
+            <li class="nav-item"><a href="./Womanpage.html" class="nav-link">WOMEN</a></li>
+            <li class="nav-item"><a href="./about.html" class="nav-link">ABOUT</a></li>
+ 
+
+             <div class="navicons" style="display: flex; align-items: center;">
+      <!-- Location Button -->
+     <li style="display: flex; align-items: center; margin-right: 5px;"> 
+        <a href="#" id="location-btn" onclick="openLocationModal()" style="display: flex; align-items: center;">
+          <i class='bx bx-map' style="font-size: 24px;"></i>
+          <span class="location-text" style="margin-left: 8px;">SELECT LOCATION</span>
+        </a>
+      </li>
+
+      <li style="display: flex; align-items: center; margin-right: 3px;">
+        <a href="#" class="search-trigger" style="display: flex; align-items: center;">
+          <i class='bx bx-search' style="font-size: 24px;"></i>
+        </a>
+        <input type="search" class="inline-search" placeholder="Search products..." style="width:0;opacity:0;border:1px solid #ccc;border-radius:20px;padding:6px 10px;transition:width .25s ease,opacity .2s;margin-left:0;margin-right:0;" />
+      </li>
+      
+      <li style="display: flex; align-items: center; margin-right: 2px;">
+        <a href="#" onclick="openModal()" style="display: flex; align-items: center;">
+          <i class='bx bx-user' style="font-size: 24px;"></i>
+        </a>
+      </li>
+             <li>
+  <a href="./wishlist.html" style="font-size: 24px; margin-right: 4px; margin-bottom: 5px; text-decoration: none;">
+    <i class='bx bx-heart'></i>
+  </a>
+</li>
+      <li style="display: flex; align-items: center;">
+        <a href="./addtocart.html" style="display: flex; align-items: center;">
+          <i class='bx bx-cart' style="font-size: 24px;"></i>
+        </a>
+      </li>
+        </ul>
+
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-image">
+            <img src="./new.png" alt="Stylish couple in neutral clothing">
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Two Worlds.<br>One Style.</h1>
+            <a href="./Womanpage.html" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="products">
+            <div class="product" style="box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; transition: transform 0.3s;">
+                <div class="product-image" style="height: 300px; display: flex; align-items: center; justify-content: center; background-color: antiquewhite;">
+                    <img src="./images/home_img1.png" alt="Men's Premium Fashion Item" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 20px;">
+                </div>
+              <a href="./shirt_men.html" style="text-decoration: none; color: inherit;">
+  <div class="product-info" style="background-color: white; padding: 15px; text-align: center;">
+    <h3 class="product-title" style="margin-bottom: 8px; font-size: 18px;">Men's Casual Jacket</h3>
+    <p class="product-price" style="font-weight: bold; color: #333;"> ₹ 1500</p>
+  </div>
+</a>
+
+            </div>
+            <div class="product" style="box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; transition: transform 0.3s;">
+                <div class="product-image" style="height: 300px; display: flex; align-items: center; justify-content: center; background-color: antiquewhite;">
+                    <img src="./images/home_img3.png" alt="Women's Premium Fashion Item" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 20px;">
+                </div>
+               <a href="./dress_woman.html" style="text-decoration: none; color: inherit;">
+  <div class="product-info" style="background-color: white; padding: 15px; text-align: center;">
+    <h3 class="product-title" style="margin-bottom: 8px; font-size: 18px;">Women's Designer Dress</h3>
+    <p class="product-price" style="font-weight: bold; color: #333;"> ₹ 2000</p>
+  </div>
+</a>
+
+            </div>
+            <div class="product" style="box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; transition: transform 0.3s;">
+                <div class="product-image" style="height: 300px; display: flex; align-items: center; justify-content: center; background-color: antiquewhite;">
+                    <img src="./images/home_img2.png" alt="Dual Style Premium Item" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 20px;">
+                </div>
+               <a href="./ethnicset_men.html" style="text-decoration: none; color: inherit;">
+  <div class="product-info" style="background-color: white; padding: 15px; text-align: center;">
+    <h3 class="product-title" style="margin-bottom: 8px; font-size: 18px;">Ethnic Set</h3>
+    <p class="product-price" style="font-weight: bold; color: #333;">₹3500</p>
+  </div>
+</a>
+
+            </div>
+        </div>
+    </section>
+
+   <!-- new arrivals -->
+    <section class="featured">
+        <h2 class="section-title">New Arrivals</h2>
+        <div class="products">
+            <div class="product" style="box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; transition: transform 0.3s;">
+                <div class="product-image" style="height: 300px; display: flex; align-items: center; justify-content: center; background-color: antiquewhite;">
+                     <img src="./images/home_img4.png" alt="Men's New Arrival Item" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 20px;">
+                 </div>
+               <a href="./shirt_men.html" style="text-decoration: none; color: inherit;">
+  <div class="product-info" style="background-color: white; padding: 15px; text-align: center;">
+    <h3 class="product-title" style="margin-bottom: 8px; font-size: 18px;">Men's Trendy Shirt</h3>
+    <p class="product-price" style="font-weight: bold; color: #333;">₹3500</p>
+  </div>
+</a>
+
+            </div>
+            <div class="product" style="box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; transition: transform 0.3s;">
+                <div class="product-image" style="height: 300px; display: flex; align-items: center; justify-content: center; background-color: antiquewhite;">
+                     <img src="./images/home_img6.png" alt="Women's New Arrival Item" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 20px;">
+                 </div>
+                <a href="./shirt_men.html" style="text-decoration: none; color: inherit;">
+  <div class="product-info" style="background-color: white; padding: 15px; text-align: center;">
+    <h3 class="product-title" style="margin-bottom: 8px; font-size: 18px;">Men's Stylish Shirt</h3>
+    <p class="product-price" style="font-weight: bold; color: #333;">₹4000</p>
+  </div>
+</a>
+
+            </div>
+            <div class="product" style="box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; transition: transform 0.3s;">
+                <div class="product-image" style="height: 300px; display: flex; align-items: center; justify-content: center; background-color: antiquewhite;">
+                     <img src="./images/home_img5.png" alt="Dual Style New Arrival" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 20px;">
+                 </div>
+               <a href="./Bottoms_men.html" style="text-decoration: none; color: inherit;">
+  <div class="product-info" style="background-color: white; padding: 15px; text-align: center;">
+    <h3 class="product-title" style="margin-bottom: 8px; font-size: 18px;">Unisex Casual Wear</h3>
+    <p class="product-price" style="font-weight: bold; color: #333;">₹4500</p>
+  </div>
+</a>
+
+            </div>
+        </div>
+    </section>
 
  
-</head>
-
-<body id="top">
-  
-  <!-- HEADER -->
-  <header>
-    <a href="#" class="logo"><img src="../images/logo.png" alt="Logo"></a>
-    <nav>
-      <ul class="navmenu">
-        <li><a href="./homepage.html#top">Home</a></li>
-        
-        <li><a href="../Menpage.html">Men</a></li>
-        <li><a href="../Womanpage.html">Women</a></li>
-             
-      </ul>
-    </nav>
-    <div class="navicons">
-      <!-- Location Button -->
-      <a href="#" id="location-btn" onclick="openLocationModal()">
-        <i class='bx bx-map'></i>
-        <span class="location-text">Select Location</span>
-      </a>
-       
-       <a href="../wishlist.html" style="font-size: 24px; margin-right: 15px;margin-bottom:5px ; text-decoration: none;">💖</a>
-
-        <a href="#" class="search-trigger"><i class='bx bx-search'></i></a>
-        <input type="search" class="inline-search" placeholder="Search products..." style="width:0;opacity:0;border:1px solid #ccc;border-radius:20px;padding:6px 10px;transition:width .25s ease,opacity .2s;margin-left:0;margin-right:0;" />
-      <a href="#" onclick="openModal()"><i class='bx bx-user'></i></a>
-      <a href="../addtocart.html" title="View Cart"><i class='bx bx-cart'></i></a>
-     
-      <!-- HAMBURGER ICON -->
-      <span class="menu-toggle"><i class='bx bx-menu'></i></span>
-    </div>
-  </header>
-<!-- Hero Section -->
-  <section class="hero">
-    
-    <!-- Left: Girl Image -->
-    <div class="hero-image">
-     <a href="../Womanpage.html"> <img src="../images/sgirl.png" alt="Women's Fashion" class="img-animate"></a>
-    </div>
-
-    <!-- Middle: Text -->
-    <div class="hero-text">
-      <h1 class="animate-delay-1">
-        Two Worlds.<br>One Style.
-      </h1>
-      <p class="animate-delay-2">
-        Discover <b>DualStyle</b> – where men’s & women’s fashion come together in harmony.  
-        Bold. Elegant. Timeless.
-      </p>
-     <a href="../Menpage.html" class="btn animate-delay-3">
-        Shop Now →
-      </a>
-    </div>
-
-    <!-- Right: Boy Image -->
-    <div class="hero-image">
-     <a href="../Menpage.html"> <img src="../images/sboyy.png" alt="Men's Fashion" class="img-animate"></a>
-    </div>
-
-  </section>
-
-
-</section>
-  <!-- ==================== FEATURED PRODUCTS ==================== -->
-  <section id="product1" class="section-p1 container">
-    <div class="section-head">
-      <h2>Featured Products</h2>
-      <p>Summer collection — New modern design</p>
-    </div>
-
-    <div class="pro-container">
-      <!-- Card 1 -->
-      <article class="pro">
-        <img src="../images/tshirts1.jpg" alt="Product 1" />
-        <div class="des">
-          <span>adidas</span>
-          <h5>Astronaut T-Shirt</h5>
-          
-          <h4>₹1,499</h4>
-        </div>
-        <button class="cart-btn" aria-label="Add to cart">Add to Cart</button>
-      </article>
-
-      <!-- Card 2 -->
-      <article class="pro">
-        <img src="../images/tm12.jpg" alt="Product 2" />
-        <div class="des">
-          <span>HRX</span>
-          <h5>Polo T-Shirt</h5>
-        
-          <h4>₹2,799</h4>
-        </div>
-        <button class="cart-btn">Add to Cart</button>
-      </article>
-
-      <!-- Card 3 -->
-      <article class="pro">
-        <img src="../images/Coordsets.png" alt="Product 3" />
-        <div class="des">
-          <span>H&m</span>
-          <h5>Coord Set</h5>
-        
-          <h4>₹1,999</h4>
-        </div>
-        <button class="cart-btn">Add to Cart</button>
-      </article>
-
-      <!-- Card 4 -->
-      <article class="pro">
-        <img src="../images/jeans1.jpg" alt="Product 4" />
-        <div class="des">
-          <span>Levi’s</span>
-          <h5>Slim Denim Jeans</h5>
-         
-          <h4>₹3,499</h4>
-        </div>
-        <button class="cart-btn">Add to Cart</button>
-      </article>
-    </div>
-  </section>
-
-  <!-- ==================== BANNER ==================== -->
-  <section id="banner" class="section-m1">
-    <div class="banner-inner container">
-      <h2>Up to <span>70% Off</span> — All T-Shirts & Blazers</h2>
-      <a href="#product1" class="btn btn-light">Explore More</a>
-    </div>
-  </section>
-
-  <!-- ==================== NEW ARRIVALS ==================== -->
-  <section class="section-p1 container" aria-labelledby="arrivals-title">
-    <div class="section-head">
-      <h2 id="arrivals-title">New Arrivals</h2>
-      <p>Fresh picks you’ll love</p>
-    </div>
-
-    <div class="pro-container">
-      <article class="pro">
-        <img src="../images/tshirts4.jpg" alt="Product" />
-        <div class="des"><span>Zara</span><h5>Oversized Tee</h5><h4>₹1,299</h4></div>
-        <button class="cart-btn">Add to Cart</button>
-      </article>
-      <article class="pro">
-        <img src="../images/h&m.jpg" alt="Product" />
-        <div class="des"><span>H&M</span><h5>Resort Wear</h5><h4>₹3,199</h4></div>
-        <button class="cart-btn">Add to Cart</button>
-      </article>
-      <article class="pro">
-        <img src="../images/hoodies2.jpg" alt="Product" />
-        <div class="des"><span>H&M</span><h5>Cotton Hoodie</h5><h4>₹1,799</h4></div>
-        <button class="cart-btn">Add to Cart</button>
-      </article>
-      <article class="pro">
-        <img src="../images/tshirts2.jpg" alt="Product" />
-        <div class="des"><span>Roadster</span><h5>Checked Shirt</h5><h4>₹1,399</h4></div>
-        <button class="cart-btn">Add to Cart</button>
-      </article>
-    </div>
-  </section>
-
-  <!-- ==================== SMALL BANNERS ==================== -->
-  <section id="sm-banner" class="section-p1 container">
-    <div class="banner-box left">
-      <h4>Crazy deals</h4>
-      <h2>Buy 1 Get 1 Free</h2>
-      <p>The best classic dress is on sale</p>
-      <a href="#product1" class="btn btn-outline">Learn More</a>
-    </div>
-
-    <div class="banner-box right">
-      <h4>Spring/Summer</h4>
-      <h2>Upcoming Season</h2>
-      <p>New collection — New style</p>
-      <a href="#product1" class="btn btn-outline">Collection</a>
-    </div>
-  </section>
 
   <!-- ==================== NEWSLETTER ==================== -->
   <section id="newsletter" class="section-p1">
@@ -199,8 +1089,8 @@
         <h4>Sign Up for Newsletters</h4>
         <p>Get e-mail updates about our latest shop and <span>special offers</span>.</p>
       </div>
-      <form class="form" action="#" method="post">
-        <input type="email" name="email" placeholder="Your email address" required />
+      <form class="form" id="newsletter-form" action="javascript:void(0);" method="post">
+        <input type="email" id="newsletter-email" name="email" placeholder="Your email address" required />
         <button class="btn" type="submit">Sign Up</button>
       </form>
     </div>
@@ -421,8 +1311,9 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 </script>
-<script src="../products.js"></script>
-<script src="../cart.js"></script>
+<script src="./products.js"></script>
+<script src="./cart.js"></script>
+
 <script>
 // Inline expanding search (Homepage)
 document.addEventListener('DOMContentLoaded', function(){
@@ -512,7 +1403,7 @@ document.addEventListener('DOMContentLoaded', function(){
     If you prefer, you can choose which cookie categories to accept or not.
     Please keep in mind that blocking some types of cookies may impact how we deliver
     and improve our services to you. When you're ready, click on 'Confirm My Choices'
-    and remember, you can always change your mind later.
+    and remember, you can always change your mind later. 
   </p>
   <a href="../cookiepolicy.html" class="cookie-link">Cookie policy</a>
 
@@ -960,6 +1851,54 @@ document.addEventListener('DOMContentLoaded', function(){
     const savedCity = localStorage.getItem('userCity');
     if (savedCity) {
       document.querySelector('.location-text').textContent = savedCity;
+    }
+  });
+</script>
+
+<script>
+  // Newsletter form submission handler
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize EmailJS with your public key
+    emailjs.init('jIhLUTtGmw-U-e-UY');
+
+    const newsletterForm = document.getElementById('newsletter-form');
+    const submitBtn = newsletterForm.querySelector('.btn');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const emailInput = document.getElementById('newsletter-email');
+        const email = emailInput.value.trim();
+
+        if (!email) {
+          alert('Please enter your email address.');
+          return;
+        }
+
+        // Disable button and show loading state
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.style.opacity = '0.6';
+
+        // Send newsletter subscription using EmailJS
+        emailjs.send('service_0watsih', 'template_15vlyp9', {
+          email: email
+        })
+        .then(function(response) {
+          alert('Thank you for subscribing! You will receive our latest updates.');
+          emailInput.value = ''; // Clear the input
+          // Reset button
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Sign Up';
+          submitBtn.style.opacity = '1';
+        }, function(error) {
+          alert('Error subscribing. Please try again.');
+          console.error('EmailJS error:', error);
+          // Reset button on error
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Sign Up';
+          submitBtn.style.opacity = '1';
+        });
+      });
     }
   });
 </script>

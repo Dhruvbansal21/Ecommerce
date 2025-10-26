@@ -6,7 +6,6 @@
 class WishlistApp {
     constructor() {
         this.wishlist = this.loadFromStorage();
-        this.currentEditId = null;
         this.searchTerm = '';
         this.sortBy = 'newest';
         
@@ -27,14 +26,6 @@ class WishlistApp {
      * Bind all event listeners
      */
     bindEvents() {
-        // Add item button
-        document.getElementById('addItemBtn').addEventListener('click', () => this.openModal());
-        
-        // Modal events
-        document.getElementById('closeModal').addEventListener('click', () => this.closeModal());
-        document.getElementById('cancelBtn').addEventListener('click', () => this.closeModal());
-        document.getElementById('itemForm').addEventListener('submit', (e) => this.handleFormSubmit(e));
-        
         // Search functionality
         document.getElementById('searchInput').addEventListener('input', (e) => {
             this.searchTerm = e.target.value.toLowerCase();
@@ -55,11 +46,7 @@ class WishlistApp {
         document.getElementById('confirmCancel').addEventListener('click', () => this.closeConfirmModal());
         document.getElementById('confirmDelete').addEventListener('click', () => this.handleConfirmDelete());
         
-        // Close modals when clicking outside
-        document.getElementById('itemModal').addEventListener('click', (e) => {
-            if (e.target.id === 'itemModal') this.closeModal();
-        });
-        
+        // Close confirmation modal when clicking outside
         document.getElementById('confirmModal').addEventListener('click', (e) => {
             if (e.target.id === 'confirmModal') this.closeConfirmModal();
         });
@@ -122,104 +109,8 @@ class WishlistApp {
         }
     }
 
-    /**
-     * Open modal for adding/editing items
-     */
-    openModal(item = null) {
-        const modal = document.getElementById('itemModal');
-        const form = document.getElementById('itemForm');
-        const title = document.getElementById('modalTitle');
-        
-        if (item) {
-            // Edit mode
-            this.currentEditId = item.id;
-            title.textContent = 'Edit Item';
-            document.getElementById('itemTitle').value = item.title;
-            document.getElementById('itemLink').value = item.link || '';
-            document.getElementById('itemPrice').value = item.price || '';
-            document.getElementById('itemImage').value = item.image || '';
-            document.getElementById('itemNote').value = item.note || '';
-        } else {
-            // Add mode
-            this.currentEditId = null;
-            title.textContent = 'Add New Item';
-            form.reset();
-        }
-        
-        modal.classList.add('show');
-        document.getElementById('itemTitle').focus();
-    }
 
-    /**
-     * Close modal
-     */
-    closeModal() {
-        const modal = document.getElementById('itemModal');
-        modal.classList.remove('show');
-        this.currentEditId = null;
-    }
 
-    /**
-     * Handle form submission
-     */
-    handleFormSubmit(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(e.target);
-        const itemData = {
-            title: formData.get('title').trim(),
-            link: formData.get('link').trim(),
-            price: formData.get('price') ? parseFloat(formData.get('price')) : null,
-            image: formData.get('image').trim(),
-            note: formData.get('note').trim()
-        };
-
-        // Validate required fields
-        if (!itemData.title) {
-            alert('Item name is required!');
-            return;
-        }
-
-        if (this.currentEditId) {
-            // Update existing item
-            this.updateItem(this.currentEditId, itemData);
-        } else {
-            // Add new item
-            this.addItem(itemData);
-        }
-        
-        this.closeModal();
-    }
-
-    /**
-     * Add new item to wishlist
-     */
-    addItem(itemData) {
-        const newItem = {
-            id: this.generateId(),
-            ...itemData,
-            purchased: false,
-            createdAt: new Date().toISOString()
-        };
-        
-        this.wishlist.unshift(newItem); // Add to beginning
-        this.saveToStorage();
-        this.render();
-        this.updateStats();
-        this.showSuccessAnimation();
-    }
-
-    /**
-     * Update existing item
-     */
-    updateItem(id, itemData) {
-        const index = this.wishlist.findIndex(item => item.id === id);
-        if (index !== -1) {
-            this.wishlist[index] = { ...this.wishlist[index], ...itemData };
-            this.saveToStorage();
-            this.render();
-        }
-    }
 
     /**
      * Delete item with confirmation
@@ -391,9 +282,6 @@ class WishlistApp {
                     ${priceDisplay ? `<div class="item-price">${priceDisplay}</div>` : ''}
                     ${noteDisplay}
                     <div class="item-actions">
-                        <button class="btn edit-btn" data-action="edit" data-id="${item.id}">
-                            ✏️ Edit
-                        </button>
                         <button class="btn ${item.purchased ? 'purchase-btn' : 'purchase-btn'}" data-action="toggle" data-id="${item.id}">
                             ${item.purchased ? '↩️ Undo' : '✅ Mark Purchased'}
                         </button>
@@ -425,10 +313,6 @@ class WishlistApp {
             if (!action || !id) return;
             
             switch (action) {
-                case 'edit':
-                    const item = this.wishlist.find(item => item.id === id);
-                    if (item) this.openModal(item);
-                    break;
                 case 'delete':
                     this.deleteItem(id);
                     break;
