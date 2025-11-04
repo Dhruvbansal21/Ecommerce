@@ -1,25 +1,4 @@
-/*
-  Cart module for listing and cart pages (vanilla JS, localStorage persistence)
 
-  Assumptions about HTML structure on product listing pages (e.g., Saree page):
-  - Each product card uses class `.product`
-  - Inside each `.product`:
-      .product-name   -> element containing the product name (text)
-      .product-price  -> element containing the product price (text, e.g., "₹1,499" or "1499")
-      .product-image  -> <img> element with the product image src
-      .add-to-cart    -> button to add this product to the cart
-
-  Assumptions about HTML structure on the Shopping Cart page:
-  - A container (div) with id `cart-items` where cart item rows will be rendered
-  - An element (span/div) with id `cart-total` where the grand total will be shown
-
-  Example minimal cart page body:
-    <div id="cart-items"></div>
-    <div class="cart-summary">
-      <span>Total Cost:</span>
-      <span id="cart-total"></span>
-    </div>
-*/
 
 (function () {
   "use strict";

@@ -15,7 +15,7 @@
   <!-- EmailJS CDN -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
-  <link rel="stylesheet" href="styles.css">
+
   <link rel="stylesheet" href="../responsive.css">
 
     <style>
@@ -1329,46 +1329,48 @@ document.addEventListener('DOMContentLoaded', function(){
     var target = '';
     // Men's categories
     if(has('men','man','male','guy')) {
-      if(has('t-shirt','t shirt','tee')) target = '../t-shirt_men.html';
-      else if(has('shirt')) target = '../shirt_men.html';
-      else if(has('jean','denim','bottom')) target = '../Bottoms_men.html';
-      else if(has('ethnic','kurta','sherwani')) target = '../ethnicset_men.html';
-      else if(has('sport','gym','training')) target = '../sportswear_men.html';
-      else if(has('hoodie','hoodies')) target = '../hoodies_men.html';
-      else if(has('coord','co-ord','co ord','set')) target = '../co_ordset_men.html';
-      else if(has('sweater','sweat')) target = '../sweater_men.html';
-      else if(has('blazer','coat','suit')) target = '../blazer_men.html';
-      else target = '../Menpage.html';
+      if(has('t-shirt','t shirt','tee')) target = 't-shirt_men.html';
+      else if(has('shirt')) target = 'shirt_men.html';
+      else if(has('jean','denim','bottom')) target = 'Bottoms_men.html';
+      else if(has('ethnic','kurta','sherwani')) target = 'ethnicset_men.html';
+      else if(has('sport','gym','training')) target = 'sportswear_men.html';
+      else if(has('hoodie','hoodies')) target = 'hoodies_men.html';
+      else if(has('coord','co-ord','co ord','set')) target = 'co_ordset_men.html';
+      else if(has('sweater','sweat')) target = 'sweater_men.html';
+      else if(has('blazer','coat','suit')) target = 'blazer_men.html';
+      else target = 'Menpage.html';
     }
     // Women's categories
     else if(has('women','woman','female','girl','lady')) {
-      if(has('kurta','kurti')) target = '../kurtas_woman.html';
-      else if(has('top','shirt','blouse')) target = '../tops_woman.html';
-      else if(has('dress','gown','midi','maxi')) target = '../dress_woman.html';
-      else if(has('saree','sari')) target = '../saree_woman.html';
-      else if(has('suit','salwar','punjabi')) target = '../suit_woman.html';
-      else if(has('ethnic set','ethnicset','co-ord ethnic')) target = '../ethnicset.html';
-      else if(has('bottom','jeans','trouser','pants','leggings')) target = '../bottoms_woman.html';
-      else if(has('sport','gym','training','active')) target = '../sportswear_woman.html';
-      else if(has('coord','co-ord','co ord','set')) target = '../coordset_women.html';
-      else if(has('shawl','stole')) target = '../shawls_woman.html';
-      else if(has('kaftan','kaftans')) target = '../kaftan_woman.html';
+      if(has('kurta','kurti')) target = 'kurtas_woman.html';
+      else if(has('top','shirt','blouse')) target = 'tops_woman.html';
+      else if(has('dress','gown','midi','maxi')) target = 'dress_woman.html';
+      else if(has('saree','sari')) target = 'saree_woman.html';
+      else if(has('suit','salwar','punjabi')) target = 'suit_woman.html';
+      else if(has('ethnic set','ethnicset','co-ord ethnic')) target = 'ethnicset.html';
+      else if(has('bottom','jeans','trouser','pants','leggings')) target = 'bottoms_woman.html';
+      else if(has('sport','gym','training','active')) target = 'sportswear_woman.html';
+      else if(has('coord','co-ord','co ord','set')) target = 'coordset_women.html';
+      else if(has('shawl','stole')) target = 'shawls_woman.html';
+      else if(has('kaftan','kaftans')) target = 'kaftan_woman.html';
       else target = '../Womanpage.html';
     }
     // General categories
-    else if(has('t-shirt','t shirt','tee')) target = '../t-shirt_men.html';
-    else if(has('shirt')) target = '../shirt_men.html';
-    else if(has('jean','denim','bottom')) target = '../Bottoms_men.html';
-    else if(has('kurta','kurti')) target = '../kurtas_woman.html';
-    else if(has('dress','gown','midi','maxi')) target = '../dress_woman.html';
-    else if(has('saree','sari')) target = '../saree_woman.html';
-    else if(has('ethnic','kurta','sherwani')) target = '../ethnicset_men.html';
-    else if(has('sport','gym','training')) target = '../sportswear_men.html';
-    else if(has('hoodie','hoodies')) target = '../hoodies_men.html';
-    else if(has('coord','co-ord','co ord','set')) target = '../coordset_women.html';
-    else if(has('sweater','sweat')) target = '../sweater_men.html';
-    else if(has('blazer','coat','suit')) target = '../blazer_men.html';
-    else if(has('kaftan','kaftans')) target = '../kaftan_woman.html';
+    else if(has('t-shirt','t shirt','tee')) target = 't-shirt_men.html';
+    else if (has('top','blouse')) target = 'tops_woman.html';
+
+    else if(has('shirt')) target = 'shirt_men.html';
+    else if(has('jean','denim','bottom')) target = 'Bottoms_men.html';
+    else if(has('kurta','kurti')) target = 'kurtas_woman.html';
+    else if(has('dress','gown','midi','maxi')) target = 'dress_woman.html';
+    else if(has('saree','sari')) target = 'saree_woman.html';
+    else if(has('ethnic','kurta','sherwani')) target = 'ethnicset_men.html';
+    else if(has('sport','gym','training')) target = 'sportswear_men.html';
+    else if(has('hoodie','hoodies')) target = 'hoodies_men.html';
+    else if(has('coord','co-ord','co ord','set')) target = 'coordset_women.html';
+    else if(has('sweater','sweat')) target = 'sweater_men.html';
+    else if(has('blazer','coat','suit')) target = 'blazer_men.html';
+    else if(has('kaftan','kaftans')) target = 'kaftan_woman.html';
     if(target){ location.href = target; }
   });
   input.addEventListener('blur', function(){ setTimeout(closeBar, 150); });
@@ -1388,7 +1390,7 @@ document.addEventListener('DOMContentLoaded', function(){
   By clicking "Accept all cookies", you accept and agree that we share this information with third parties, such as our advertising partners. 
   By choosing "Only required cookies", optional cookies are blocked, limiting our delivery of tailored content and features. 
   Click on "Cookie Settings" to customize your options. 
-  Visit our <a href="../cookiepolicy.html">Cookie Policy</a> to learn more.
+  Visit our <a href="./cookiepolicy.html">Cookie Policy</a> to learn more.
 </p>
 
     <button class="cookie-btn" id="accept-btn">ACCEPT ALL COOKIES</button>
@@ -1405,7 +1407,7 @@ document.addEventListener('DOMContentLoaded', function(){
     and improve our services to you. When you're ready, click on 'Confirm My Choices'
     and remember, you can always change your mind later. 
   </p>
-  <a href="../cookiepolicy.html" class="cookie-link">Cookie policy</a>
+  <a href="./cookiepolicy.html" class="cookie-link">Cookie policy</a>
 
   <button onclick="acceptAllCookies()">ACCEPT ALL COOKIES</button>
 

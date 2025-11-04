@@ -1383,17 +1383,51 @@ document.addEventListener('DOMContentLoaded', function(){
 </script>
 <script src="cart.js"></script>
 <script>
-// Inline expanding search (Men)
 document.addEventListener('DOMContentLoaded', function(){
   var trigger = document.querySelector('.navicons .search-trigger');
   var input = document.querySelector('.navicons .inline-search');
+  
   if(!trigger || !input) return;
-  function openBar(){ input.style.width = '220px'; input.style.opacity = '1'; input.focus(); }
-  function closeBar(){ if(!input.value){ input.style.width = '0'; input.style.opacity = '0'; } }
-  trigger.addEventListener('click', function(e){ e.preventDefault(); if(input.style.width==='0px' || !input.style.width) openBar(); else closeBar(); });
+
+  // Make sure search icon is visible even if hidden in CSS
+  trigger.style.display = 'inline-block'; // or 'flex' depending on your layout
+
+  function openBar(){ 
+    input.style.display = 'inline-block'; 
+    input.style.width = '220px'; 
+    input.style.opacity = '1'; 
+    input.focus(); 
+  }
+
+  function closeBar(){ 
+    if(!input.value){ 
+      input.style.width = '0'; 
+      input.style.opacity = '0'; 
+      input.style.display = 'none'; 
+    } 
+  }
+
+  trigger.addEventListener('click', function(e){ 
+    e.preventDefault(); 
+    var displayState = window.getComputedStyle(input).display; // get actual display
+    if(displayState === 'none' || input.style.width === '0px' || !input.style.width){
+      openBar();
+    } else {
+      closeBar();
+    }
+  });
+
   input.addEventListener('keydown', function(e){
-    if(e.key !== 'Enter') return; var q = (input.value||'').toLowerCase();
-    function has(){ for(var i=0;i<arguments.length;i++){ if(q.indexOf(arguments[i])!==-1) return true; } return false; }
+    if(e.key !== 'Enter') return; 
+    var q = (input.value||'').toLowerCase();
+
+    function has(){ 
+      for(var i=0;i<arguments.length;i++){ 
+        if(q.indexOf(arguments[i])!==-1) return true; 
+      } 
+      return false; 
+    }
+
     var target = '';
     if(has('t-shirt','t shirt','tee')) target = 't-shirt_men.html';
     else if(has('shirt')) target = 'shirt_men.html';
@@ -1404,9 +1438,13 @@ document.addEventListener('DOMContentLoaded', function(){
     else if(has('coord','co-ord','co ord','set')) target = 'co_ordset_men.html';
     else if(has('sweater','sweat')) target = 'sweater_men.html';
     else if(has('blazer','coat','suit')) target = 'blazer_men.html';
+    
     if(target){ location.href = target; }
   });
-  input.addEventListener('blur', function(){ setTimeout(closeBar, 150); });
+
+  input.addEventListener('blur', function(){ 
+    setTimeout(closeBar, 150); 
+  });
 });
 </script>
   

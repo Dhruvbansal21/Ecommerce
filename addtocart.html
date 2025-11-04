@@ -204,6 +204,76 @@
       font-size: 16px;
     }
 
+    /* Confirmation Modal Styles */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .confirmation-modal {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: modalSlideIn 0.3s ease-out;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .confirmation-modal h2 {
+      color: #2d5016;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .confirmation-modal p {
+      color: #333;
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+
+    .confirmation-modal .location-highlight {
+      color: rgb(235, 178, 103);
+      font-weight: bold;
+    }
+
+    .confirmation-modal button {
+      background: rgb(235, 178, 103);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .confirmation-modal button:hover {
+      background: rgb(220, 165, 90);
+    }
+
     /* Dynamic cart list styles (for elements rendered by cart.js) */
     #cart-items {
       display: flex;
@@ -345,7 +415,16 @@
 
     <div class="cart-actions">
       <button class="back-btn" id="history-back-btn">Back</button>
-      <button class="checkout-btn">Checkout</button>
+      <button class="checkout-btn" id="checkout-btn">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div class="modal-overlay" id="confirmation-modal">
+    <div class="confirmation-modal">
+      <h2>✅ Order Confirmed!</h2>
+      <p id="confirmation-message">Your order has been confirmed and will be delivered to <span class="location-highlight" id="delivery-location">your selected location</span>.</p>
+      <button onclick="closeConfirmationModal()">Continue Shopping</button>
     </div>
   </div>
 
@@ -359,7 +438,7 @@
         if (document.referrer && document.referrer !== location.href) {
           history.back();
         } else {
-          window.location.href = './home/homepage.html';
+          window.location.href = './dualstyle.html';
         }
       });
     }
@@ -373,7 +452,155 @@
       if (totalEl && dupEl) dupEl.textContent = totalEl.textContent;
     });
     if (totalEl) observer.observe(totalEl, { childList: true, characterData: true, subtree: true });
+
+    // Checkout functionality
+    var checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener('click', function() {
+        // Check if cart has items
+        var cart = [];
+        try {
+          var raw = localStorage.getItem('cartItems');
+          if (raw) {
+            cart = JSON.parse(raw);
+          }
+        } catch(e) {
+          cart = [];
+        }
+
+        if (cart.length === 0) {
+          alert('Your cart is empty. Please add items before checkout.');
+          return;
+        }
+
+        // Get location from localStorage
+        var userCity = localStorage.getItem('userCity');
+        var userPincode = localStorage.getItem('userPincode');
+
+        // Check if city is selected
+        if (!userCity || userCity === 'SELECT LOCATION' || userCity.trim() === '') {
+          alert('Please select your delivery city before placing the order. Click on "SELECT LOCATION" to choose your city.');
+          return;
+        }
+
+        // Validate city existence if pincode is available
+        if (userPincode && userPincode.trim() !== '') {
+          validateCityAndProceedCheckout(userCity, userPincode);
+        } else {
+          // If no pincode, just validate city name format
+          if (isValidCityName(userCity)) {
+            proceedWithCheckout(userCity);
+          } else {
+            alert('Please enter a valid city name. City names should only contain letters and spaces.');
+            return;
+          }
+        }
+      });
+    }
+
+    // Function to validate city name format
+    function isValidCityName(cityName) {
+      // Check if city name contains only letters, spaces, and common punctuation
+      var cityPattern = /^[a-zA-Z\s\-\.\']+$/;
+      return cityPattern.test(cityName) && cityName.length >= 2;
+    }
+
+    // Function to validate city existence using postal API
+    function validateCityAndProceedCheckout(cityName, pincode) {
+      // Show loading state
+      var checkoutBtn = document.getElementById('checkout-btn');
+      var originalText = checkoutBtn.textContent;
+      checkoutBtn.textContent = 'Validating...';
+      checkoutBtn.disabled = true;
+
+      // Validate using India Post API
+      fetch(`https://api.postalpincode.in/pincode/${pincode}`)
+        .then(response => response.json())
+        .then(data => {
+          checkoutBtn.textContent = originalText;
+          checkoutBtn.disabled = false;
+
+          if (data && data[0] && data[0].Status === 'Success') {
+            var postOffices = data[0].PostOffice;
+            var cityExists = false;
+            
+            // Check if the entered city matches any of the postal data
+            for (var i = 0; i < postOffices.length; i++) {
+              var office = postOffices[i];
+              if (office.District && office.District.toLowerCase() === cityName.toLowerCase() ||
+                  office.Name && office.Name.toLowerCase() === cityName.toLowerCase() ||
+                  office.Block && office.Block.toLowerCase() === cityName.toLowerCase()) {
+                cityExists = true;
+                break;
+              }
+            }
+
+            if (cityExists) {
+              proceedWithCheckout(cityName);
+            } else {
+              alert(`The city "${cityName}" does not match the postal code ${pincode}. Please verify your city name or update your location.`);
+            }
+          } else {
+            alert('Unable to validate the city. Please check your internet connection and try again, or verify your location details.');
+          }
+        })
+        .catch(error => {
+          checkoutBtn.textContent = originalText;
+          checkoutBtn.disabled = false;
+          console.error('City validation error:', error);
+          
+          // If API fails, proceed with basic validation
+          if (isValidCityName(cityName)) {
+            proceedWithCheckout(cityName);
+          } else {
+            alert('Unable to validate city. Please ensure you have entered a valid city name.');
+          }
+        });
+    }
+
+    // Function to proceed with checkout after validation
+    function proceedWithCheckout(cityName) {
+      // Update confirmation message
+      var locationSpan = document.getElementById('delivery-location');
+      if (locationSpan) {
+        locationSpan.textContent = cityName;
+      }
+
+      // Show confirmation modal
+      var modal = document.getElementById('confirmation-modal');
+      if (modal) {
+        modal.style.display = 'flex';
+      }
+
+      // Clear the cart
+      localStorage.removeItem('cartItems');
+
+      // Update cart UI immediately
+      var itemsContainer = document.getElementById('cart-items');
+      var totalEl = document.getElementById('cart-total');
+      var dupEl = document.getElementById('cart-total-dup');
+      
+      if (itemsContainer) {
+        itemsContainer.innerHTML = '<div class="cart-empty">Your cart is empty.</div>';
+      }
+      if (totalEl) {
+        totalEl.textContent = '₹0';
+      }
+      if (dupEl) {
+        dupEl.textContent = '₹0';
+      }
+    }
   });
+
+  // Close confirmation modal
+  function closeConfirmationModal() {
+    var modal = document.getElementById('confirmation-modal');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+    // Redirect to homepage
+    window.location.href = './dualstyle.html';
+  }
 </script>
 </body>
 </html>
